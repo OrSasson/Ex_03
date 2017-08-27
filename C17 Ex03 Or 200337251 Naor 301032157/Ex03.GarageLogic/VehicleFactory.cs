@@ -9,30 +9,23 @@ namespace Ex03.GarageLogic
     internal static class VehicleFactory 
     {
         //private Build/Generate/Produce.... Car  
-        private static CreateCar(eVehicleType i_VehicleType)
+        private static Vehicle CreateVehicle(eVehicleType i_VehicleType)
         {
+            //$Naor - added a temporary local Vehicle
+            Vehicle newVehicle = null;
+
             if(i_VehicleType == eVehicleType.Car)
             {
-                new Car(....)
+                // new Car(....)
             }
             else if( i_VehicleType == eVehicleType.Motorcycle)
             {
-                new Motorcycle
+               // new Motorcycle(....);
             }
+
+            return newVehicle;
 
         } 
         
     }
-
-    class Program
-    {
-        internal static void Main()
-        {
-            
-        }
-    }
-    
 }
-
-
-

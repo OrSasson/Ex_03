@@ -19,6 +19,7 @@ namespace Ex03.GarageLogic
 
         eMotorcylceLicenseType m_LicenseType;
         int m_EngineVolume; // m_EngineCapacity??
+        
 
     }
 }

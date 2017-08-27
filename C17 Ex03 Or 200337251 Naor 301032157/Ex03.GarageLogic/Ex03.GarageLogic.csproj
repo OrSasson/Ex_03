@@ -35,19 +35,30 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Engine\ElectricEngine.cs" />
+    <Compile Include="Engine\Engine.cs" />
+    <Compile Include="Engine\FuelEngine.cs" />
     <Compile Include="enums\eVehicleType.cs" />
     <Compile Include="VehicleFactory.cs" />
     <Compile Include="Vehicles\Car.cs" />
     <Compile Include="enums\eCarColor.cs" />
     <Compile Include="enums\eMotorcylceLicenseType.cs" />
     <Compile Include="enums\eNumDoorsInCar.cs" />
+    <Compile Include="Vehicles\ElectricCar.cs" />
+    <Compile Include="Vehicles\ElectricMotorCycle.cs" />
+    <Compile Include="Vehicles\FuelCar.cs" />
+    <Compile Include="Vehicles\FuelMotorCycle.cs" />
+    <Compile Include="Vehicles\FuelTruck.cs" />
     <Compile Include="Vehicles\Motorcycle.cs" />
     <Compile Include="Vehicles\Truck.cs" />
-    <Compile Include="Vehicles\vehicle.cs" />
+    <Compile Include="Vehicles\Vehicle.cs" />
     <Compile Include="Wheel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
