@@ -6,29 +6,12 @@ namespace Ex03.GarageLogic
 {
     abstract class Car : Vehicle
     {
+        eCarColor m_CarColor;
+        eNumDoorsInCar m_NumOfDoorsInCar;
+        
         public Car()
         {
-            eCarColor m_CarColor;
-            eNumDoorsInCar m_NumOfDoors;
-
+            
         }
-
-        // $Ask Guy - This enum is very specific to this class. Could it reside here?
-        private enum eCarColor
-        {
-            Green,
-            Silver,
-            White,
-            Black
-        }
-        // See above.
-        enum eNumDoorsInCar
-        {
-            Two,
-            Three,
-            Four,
-            Five
-        }
-
     }
 }

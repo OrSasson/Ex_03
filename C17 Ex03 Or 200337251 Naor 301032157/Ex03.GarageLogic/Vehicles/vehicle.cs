@@ -6,9 +6,18 @@ namespace Ex03.GarageLogic
 {
     abstract class Vehicle
     {
-        private readonly string m_ModelName; // $Naor - maybe change to m_Manufacturer ? 
-        private readonly string m_LicensePlateNum;
-        private float m_EnergyLeftPercentage;
-        private List<Wheel> m_Wheels;
+        // Should be properties?
+        protected readonly string m_ModelName;
+        private readonly string licensePlateNum;
+        protected float m_EnergyLeftPercentage;
+        protected List<Wheel> m_Wheels;
+
+        internal string LicensePlateNum
+        {
+            get
+            {
+                return licensePlateNum;
+            }
+        }
     }
 }

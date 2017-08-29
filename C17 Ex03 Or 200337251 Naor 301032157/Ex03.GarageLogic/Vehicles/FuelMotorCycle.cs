@@ -6,5 +6,9 @@ namespace Ex03.GarageLogic.Vehicles
 {
     class FuelMotorCycle : Motorcycle
     {
+        public FuelMotorCycle()
+        {
+            
+        }
     }
 }
