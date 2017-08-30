@@ -7,14 +7,14 @@
         readonly string m_CustomerPhoneNumber;
         eVehicleStatus m_VehicleStatus;
 
-        public CustomerData(string i_CustomerName, string i_CustomerPhoneNumber)
+        internal CustomerData(string i_CustomerName, string i_CustomerPhoneNumber)
         {
             m_CustomerName = i_CustomerName;
             m_CustomerPhoneNumber = i_CustomerPhoneNumber;
         }
 
 
-        public eVehicleStatus VehicleStatus
+        internal eVehicleStatus VehicleStatus
         {
             get
             {

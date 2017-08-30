@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ex03.GarageLogic.Vehicles
+namespace Ex03.GarageLogic
 {
-    class ElectricCar : Car
+    internal class ElectricCar : Car
     {
+        public ElectricCar()
+        {
+
+        }
     }
 }

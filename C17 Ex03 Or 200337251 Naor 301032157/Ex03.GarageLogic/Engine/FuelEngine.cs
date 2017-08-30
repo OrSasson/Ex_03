@@ -4,7 +4,19 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class FuelEngine : Engine
+    internal class FuelEngine : Engine
     {
+        public FuelEngine(float i_MaxEnergyAmount, float i_CurrentEnergyAmount) :base(i_MaxEnergyAmount, i_CurrentEnergyAmount)
+        {
+
+        }
+
+        internal enum eFuelType
+        {
+            Soler,
+            Octan95,
+            Octan96,
+            Octan98
+        }
     }
 }

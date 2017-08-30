@@ -1,31 +1,50 @@
-﻿using Ex03.GarageLogic.enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    //$ check 
-    internal static class VehicleFactory 
+    internal static class VehicleFactory
     {
-        //private Build/Generate/Produce.... Car  
-        private static Vehicle CreateVehicle(eVehicleType i_VehicleType)
+        public static Vehicle CreateVehicle(int i_VehicleType, string i_ModelName, string i_LicenceNumber)
         {
-            //$Naor - added a temporary local Vehicle
             Vehicle newVehicle = null;
 
-            if(i_VehicleType == eVehicleType.Car)
+            try
             {
-                // new Car(....)
+                eVehicleType vehicleType = (eVehicleType)i_VehicleType;
+
+                switch (vehicleType)
+                {
+                    case eVehicleType.FuelCar:
+                        newVehicle = new FuelCar(i_ModelName, i_LicenceNumber);
+                        break;
+                    case eVehicleType.ElectricCar:
+                        newVehicle = new ElectricCar(i_ModelName, i_LicenceNumber);
+                        break;
+                    case eVehicleType.ElectricMotorCycle:
+                        newVehicle = new ElectricMotorcycle(i_ModelName, i_LicenceNumber);
+                        break;
+                    case eVehicleType.FuelMotorcycle:
+                        newVehicle = new FuelMotorcycle(i_ModelName, i_LicenceNumber);
+                        break;
+                    case eVehicleType.FuelTruck:
+                        newVehicle = new FuelTruck(i_ModelName, i_LicenceNumber);
+                        break;
+                }
             }
-            else if( i_VehicleType == eVehicleType.Motorcycle)
+            catch
             {
-               // new Motorcycle(....);
+                throw new ArgumentException("There is no suitable vehicle!!");
             }
 
             return newVehicle;
+        }
 
-        } 
-        
+        internal enum eVehicleType : byte
+        {
+            FuelCar = 1, ElectricCar, FuelMotorcycle, ElectricMotorCycle, FuelTruck
+        }
+
     }
 }

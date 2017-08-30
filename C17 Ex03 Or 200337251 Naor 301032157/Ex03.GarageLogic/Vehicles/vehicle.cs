@@ -4,14 +4,18 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    abstract class Vehicle
+    internal abstract class Vehicle
     {
         // Should be properties?
         protected readonly string m_ModelName;
-        private readonly string licensePlateNum;
-        protected float m_EnergyLeftPercentage;
-        protected List<Wheel> m_Wheels;
+        private readonly string   r_LicensePlateNum;
+        protected float           m_EnergyLeftPercentage;
+        protected List<Wheel>     m_Wheels;
 
+        public Vehicle(string i_ModelName,string i_LicensePlateNum,  float i_EnergyLeftPercentage, List<Wheel> i_Wheels)
+        {
+
+        }
         internal string LicensePlateNum
         {
             get

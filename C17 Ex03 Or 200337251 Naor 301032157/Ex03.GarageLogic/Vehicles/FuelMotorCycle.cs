@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ex03.GarageLogic.Vehicles
+namespace Ex03.GarageLogic
 {
-    class FuelMotorCycle : Motorcycle
+   internal class FuelMotorcycle : Motorcycle
     {
-        public FuelMotorCycle()
+        internal FuelMotorcycle()
         {
             
         }

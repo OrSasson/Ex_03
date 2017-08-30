@@ -41,7 +41,7 @@
     <Compile Include="Engine\FuelEngine.cs" />
     <Compile Include="enums\eFuelType.cs" />
     <Compile Include="enums\eVehicleType.cs" />
-    <Compile Include="eVehicleStatus.cs" />
+    <Compile Include="enums\eVehicleStatus.cs" />
     <Compile Include="Garage.cs" />
     <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="VehicleFactory.cs" />
@@ -50,9 +50,9 @@
     <Compile Include="enums\eMotorcylceLicenseType.cs" />
     <Compile Include="enums\eNumDoorsInCar.cs" />
     <Compile Include="Vehicles\ElectricCar.cs" />
-    <Compile Include="Vehicles\ElectricMotorCycle.cs" />
+    <Compile Include="Vehicles\ElectricMotorcycle.cs" />
     <Compile Include="Vehicles\FuelCar.cs" />
-    <Compile Include="Vehicles\FuelMotorCycle.cs" />
+    <Compile Include="Vehicles\FuelMotorcycle.cs" />
     <Compile Include="Vehicles\FuelTruck.cs" />
     <Compile Include="Vehicles\Motorcycle.cs" />
     <Compile Include="Vehicles\Truck.cs" />

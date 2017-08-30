@@ -5,6 +5,7 @@ using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
 {
+    //$Or - All enums should be changed to contain the class they belong to.
     class Program
     {
         public static void Main()

@@ -4,11 +4,16 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class Wheel
+    internal class Wheel
     {
         private readonly string m_Manufacturer;
         private float m_CurrentAirPressure;
         private readonly float m_MaximalAirPressure;
+
+        public Wheel()
+        {
+
+        }
 
         // $Or - Change to Setter.   
         // Feels kinda right. He only required it do be in a method, setters are methods... 
