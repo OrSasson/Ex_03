@@ -6,14 +6,19 @@ namespace Ex03.GarageLogic
 {
    internal abstract class Car : Vehicle
     {
+
         eCarColor m_CarColor;
         eNumDoorsInCar m_NumOfDoorsInCar;
-        Engine Engine;
+
+        const int k_numOfWheels = 4;
+        const int k_maximalAirPressure = 32;
+
         // $ OrNaor - Feels funky. Check.
-        public Car(eCarColor i_CarColor, eNumDoorsInCar i_NumOfDoorsInCar, string i_ModelName, string i_LicensePlateNum, float i_EnergyLeftPercentage, List<Wheel> i_Wheels)
-            :base (i_ModelName, i_LicensePlateNum,i_EnergyLeftPercentage, i_Wheels)
+        public Car(string i_ModelName, string i_LicenceNumber) :base(i_ModelName, i_LicenceNumber)
         {
-            
+            m_CarColor = eCarColor.Black;
+            m_NumOfDoorsInCar = eNumDoorsInCar.Four;
+
         }
     }
 }

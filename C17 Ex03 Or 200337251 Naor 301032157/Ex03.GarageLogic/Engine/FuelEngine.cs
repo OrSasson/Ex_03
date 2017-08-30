@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     internal class FuelEngine : Engine
     {
-        public FuelEngine(float i_MaxEnergyAmount, float i_CurrentEnergyAmount) :base(i_MaxEnergyAmount, i_CurrentEnergyAmount)
+        public FuelEngine(eFuelType i_fuelType, float i_MaxEnergyAmount, float i_CurrentEnergyAmount) :base(i_MaxEnergyAmount, i_CurrentEnergyAmount)
         {
 
         }
