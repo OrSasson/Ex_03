@@ -90,7 +90,6 @@ namespace Ex03.ConsoleUI
             //       10.
         }
 
-
         public int GetVehicleProperty(string i_UserOptionsSet)
         {
             //this are the required strings
@@ -121,7 +120,6 @@ namespace Ex03.ConsoleUI
             m_IntParcer.GetVehicleProperty(i_UserOptionsSet, out userProperyValue);
 
             return userProperyValue;
-            
         }
 
         public bool DoesContainsHazardousMaterials()

@@ -29,9 +29,9 @@ namespace Ex03.GarageLogic
                     case eVehicleType.FuelMotorcycle:
                         newVehicle = new FuelMotorcycle(i_ModelName, i_LicenceNumber);
                         break;
-                    //case eVehicleType.FuelTruck:
-                    //    newVehicle = new FuelTruck(i_ModelName, i_LicenceNumber);
-                    //    break;
+                    case eVehicleType.FuelTruck:
+                        newVehicle = new FuelTruck(i_ModelName, i_LicenceNumber);
+                        break;
                 }
             }
             catch
@@ -41,6 +41,7 @@ namespace Ex03.GarageLogic
 
             return newVehicle;
         }
+
         internal enum eVehicleType : byte
         {
             FuelCar = 1,
@@ -49,6 +50,5 @@ namespace Ex03.GarageLogic
             ElectricMotorcycle,
             FuelTruck
         }
-
     }
 }

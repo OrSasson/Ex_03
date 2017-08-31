@@ -7,7 +7,11 @@
         readonly string m_CustomerPhoneNumber;
         eVehicleStatus m_VehicleStatus;
 
-       
+        internal CustomerData(string i_CustomerName, string i_CustomerPhoneNumber)
+        {
+            m_CustomerName = i_CustomerName;
+            m_CustomerPhoneNumber = i_CustomerPhoneNumber;
+        }
 
         public eVehicleStatus VehicleStatus
         {
@@ -22,13 +26,6 @@
             }
         }
 
-        internal CustomerData(string i_CustomerName, string i_CustomerPhoneNumber)
-        {
-            m_CustomerName = i_CustomerName;
-            m_CustomerPhoneNumber = i_CustomerPhoneNumber;
-        }
-
-
         public override string ToString()
         {
             string customerToStr = string.Format(
@@ -39,7 +36,5 @@ Vehicle status: {2}"
 
             return customerToStr;
         }
-
-
     }
 }

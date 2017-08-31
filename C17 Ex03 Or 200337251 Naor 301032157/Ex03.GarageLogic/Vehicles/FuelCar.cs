@@ -12,21 +12,22 @@ namespace Ex03.GarageLogic
         internal FuelCar(string i_ModelName, string i_LicenceNumber)
             : base( i_ModelName, i_LicenceNumber)
         {
-            Engine = new FuelEngine(FuelEngine.eFuelType.Octan98, k_MaxFuelAmount, EnergyLeftPercentage);
+            Engine = new FuelEngine(FuelEngine.eFuelType.Octan98, k_MaxFuelAmount);
         }
 
         public override void InitVehicleAdditionalProperties()
         {
-            //$Or - Need to somehowadd the properties here. We don't have polymorphism.
+            //$Or - Need to somehow add the properties here. We don't have polymorphism.
             InitFuelCarProperties();
             return;
         }
+
         private void InitFuelCarProperties()
         {
-            return;
+
         }
     
-
+        
     }
     
 }

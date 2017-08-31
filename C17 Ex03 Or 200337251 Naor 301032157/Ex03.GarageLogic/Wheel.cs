@@ -7,23 +7,24 @@ namespace Ex03.GarageLogic
     public class Wheel
     {
         private readonly string m_Manufacturer;
-        private float m_CurrentAirPressure;
         private readonly float m_MaximalAirPressure;
+        private float m_CurrentAirPressure;
     
         public Wheel(string i_Manufacturer,float i_CurrentAirPressure, float i_MaxAirPressure)
         {
             m_Manufacturer = i_Manufacturer;
             m_MaximalAirPressure = i_MaxAirPressure;
-            m_CurrentAirPressure = i_CurrentAirPressure;
+            m_CurrentAirPressure = default(float);
         }
 
         public void inflateWheel(float i_AmountOfAirToAdd)
         {
-            if(i_AmountOfAirToAdd < 0 ||m_CurrentAirPressure + i_AmountOfAirToAdd > m_MaximalAirPressure)
+            if(i_AmountOfAirToAdd < 0 || m_CurrentAirPressure + i_AmountOfAirToAdd > m_MaximalAirPressure)
             {
                 throw new ValueOutOfRangeExecption("You are trying to add too much air, or inputting a negative number as air pressure unit value. ", 0, m_MaximalAirPressure - m_CurrentAirPressure);
                 
             }
+
             m_CurrentAirPressure += i_AmountOfAirToAdd;
         }
 

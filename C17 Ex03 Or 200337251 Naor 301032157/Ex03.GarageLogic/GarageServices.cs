@@ -41,10 +41,12 @@ namespace Ex03.GarageLogic
             s_GarageEntries.TryGetValue(i_VehicleToChange, out customerData);
             customerData.VehicleStatus = i_NewVehicleStatus;
         }
-        private bool IsVehicleInGarage(Vehicle i_Vehicle)
+
+        public bool IsVehicleInGarage(Vehicle i_Vehicle)
         {
             return s_GarageEntries.ContainsKey(i_Vehicle);
         }
+
         public static void AddNewGarageEntry(eVehicleType i_VehicleType, string i_ModelName, string i_LicenceNumber, string i_WheelManfucaturerName, string i_OwnerName, string i_OwnerPhoneNum)
         {
             string propertiesToAdd = string.Empty;

@@ -6,10 +6,12 @@ namespace Ex03.GarageLogic
 {
     internal class ElectricMotorcycle : Motorcycle
     {
+        private const float r_MaxBatteryCapacity = 1.6f;
+
         internal ElectricMotorcycle(string i_ModelName, string i_LicenceNumber)
             : base( i_ModelName, i_LicenceNumber)
         {
-            Engine = new ElectricEngine(); // Please Add needed params in here.
+            Engine = new ElectricEngine(r_MaxBatteryCapacity); 
         }
 
         public override void InitVehicleAdditionalProperties()
@@ -18,6 +20,7 @@ namespace Ex03.GarageLogic
             InitElectricMotorcycleProperties();
             return;
         }
+
         private void InitElectricMotorcycleProperties()
         {
             return;

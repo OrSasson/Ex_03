@@ -34,7 +34,7 @@
   <ItemGroup>
     <Compile Include="ConsoleUI.cs" />
     <Compile Include="eFilterStatusOptions.cs" />
-    <Compile Include="eGarageSystemOptions.cs" />
+    <Compile Include="eGarageSystemServices.cs" />
     <Compile Include="FloatParcer.cs" />
     <Compile Include="IntParcer.cs" />
     <Compile Include="Program.cs" />

@@ -10,10 +10,10 @@ namespace Ex03.GarageLogic
         private readonly float r_MaxEnergyAmount;
         private float m_CurrentEnergyAmount;
 
-        public Engine(float i_MaxEnergyAmount, float i_CurrentEnergyAmount)
+        public Engine(float i_MaxEnergyAmount)
         {
             r_MaxEnergyAmount = i_MaxEnergyAmount;
-            m_CurrentEnergyAmount = i_CurrentEnergyAmount;
+            m_CurrentEnergyAmount = default(float);
         }
 
         protected float MaxEnergyAmount
@@ -22,7 +22,6 @@ namespace Ex03.GarageLogic
             {
                 return r_MaxEnergyAmount;
             }
-            
         }
 
         protected float CurrentEnergyAmount
@@ -30,6 +29,10 @@ namespace Ex03.GarageLogic
             get
             {
                 return m_CurrentEnergyAmount;
+            }
+            set
+            {
+                m_CurrentEnergyAmount = value;
             }
         }
     }

@@ -6,21 +6,21 @@ namespace Ex03.GarageLogic
 {
     internal class ElectricCar : Car
     {
-        private const float k_MaxFuelAmount = 50f;
+        private const float k_MaxBatteryCapacity = 2.8f;
 
-        //$ Or - Please Change the const value to the correct ones in this one and all other classes too please.
         internal ElectricCar(string i_ModelName, string i_LicenceNumber)
             : base( i_ModelName, i_LicenceNumber)
         {
-           Engine = new ElectricEngine(); // Please Add needed params in here.
+           Engine = new ElectricEngine(k_MaxBatteryCapacity); 
         }
 
         public override void InitVehicleAdditionalProperties()
         {
-            //$Or - Need to somehowadd the properties here. We don't have polymorphism.
+            //$Or - Need to somehow add the properties here. We don't have polymorphism.
             InitElectricCarProperties();
             return;
         }
+
         private void InitElectricCarProperties()
         {
             return;
