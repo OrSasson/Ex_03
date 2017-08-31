@@ -23,28 +23,31 @@ namespace Ex03.GarageLogic
                     case eVehicleType.ElectricCar:
                         newVehicle = new ElectricCar(i_ModelName, i_LicenceNumber);
                         break;
-                    case eVehicleType.ElectricMotorCycle:
+                    case eVehicleType.ElectricMotorcycle:
                         newVehicle = new ElectricMotorcycle(i_ModelName, i_LicenceNumber);
                         break;
                     case eVehicleType.FuelMotorcycle:
                         newVehicle = new FuelMotorcycle(i_ModelName, i_LicenceNumber);
                         break;
-                    case eVehicleType.FuelTruck:
-                        newVehicle = new FuelTruck(i_ModelName, i_LicenceNumber);
-                        break;
+                    //case eVehicleType.FuelTruck:
+                    //    newVehicle = new FuelTruck(i_ModelName, i_LicenceNumber);
+                    //    break;
                 }
             }
             catch
             {
-                throw new ArgumentException("There is no suitable vehicle!!");
+                throw new ArgumentException("No matching Vehicle Found!!");
             }
 
             return newVehicle;
         }
-
         internal enum eVehicleType : byte
         {
-            FuelCar = 1, ElectricCar, FuelMotorcycle, ElectricMotorCycle, FuelTruck
+            FuelCar = 1,
+            ElectricCar,
+            FuelMotorcycle,
+            ElectricMotorcycle,
+            FuelTruck
         }
 
     }

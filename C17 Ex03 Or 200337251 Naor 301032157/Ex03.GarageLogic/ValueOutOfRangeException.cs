@@ -4,15 +4,41 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    public class ValueOutOfRangeExeception : Exception
+    public class ValueOutOfRangeExecption : Exception
     {
         float m_MinValue;
         float m_MaxValue;
 
-        public ValueOutOfRangeExeception() : base()
+        public ValueOutOfRangeExecption(string i_Message, float i_MinValue, float i_MaxValue) : base(i_Message)
         {
-            m_MinValue = 0;
-            m_MaxValue = 40;
+            m_MinValue = i_MinValue;
+            m_MaxValue = i_MaxValue;
+        }
+
+        public float MinValue
+        {
+            get
+            {
+                return m_MinValue;
+            }
+
+            private set
+            {
+                m_MinValue = value;
+            }
+        }
+
+        public float MaxValue
+        {
+            get
+            {
+                return m_MaxValue;
+            }
+
+            private set
+            {
+                m_MaxValue = value;
+            }
         }
     }
 }

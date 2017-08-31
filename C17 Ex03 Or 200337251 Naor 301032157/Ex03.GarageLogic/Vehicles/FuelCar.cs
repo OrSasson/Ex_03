@@ -7,25 +7,25 @@ namespace Ex03.GarageLogic
     // $Or - Should this be public?
     internal class FuelCar : Car
     {
-        private const float k_MaxFuelAmount = 42f;
+        private const float k_MaxFuelAmount = 50f;
      
-
         internal FuelCar(string i_ModelName, string i_LicenceNumber)
             : base( i_ModelName, i_LicenceNumber)
         {
-            r_FuelEngine = new FuelEngine(FuelEngine.eFuelType.Octan98, k_MaxFuelAmount, EnergyLeftPercentage);
+            Engine = new FuelEngine(FuelEngine.eFuelType.Octan98, k_MaxFuelAmount, EnergyLeftPercentage);
         }
 
-
-        private readonly Engine r_FuelEngine;
-        // $change this.
-        public Engine Engine
+        public override void InitVehicleAdditionalProperties()
         {
-            get
-            {
-                return r_FuelEngine;
-            }
+            //$Or - Need to somehowadd the properties here. We don't have polymorphism.
+            InitFuelCarProperties();
+            return;
         }
+        private void InitFuelCarProperties()
+        {
+            return;
+        }
+    
 
     }
     

@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    internal class FuelTruck : Truck
-    {
-        public FuelTruck()
-        {
+    //internal class FuelTruck : Truck
+    //{
+    //    public FuelTruck()
+    //    {
 
-        }
-    }
+    //    }
+    //}
 }

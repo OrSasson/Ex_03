@@ -4,27 +4,34 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    internal class Wheel
+    public class Wheel
     {
         private readonly string m_Manufacturer;
         private float m_CurrentAirPressure;
         private readonly float m_MaximalAirPressure;
-
-        public Wheel()
+    
+        public Wheel(string i_Manufacturer,float i_CurrentAirPressure, float i_MaxAirPressure)
         {
-
+            m_Manufacturer = i_Manufacturer;
+            m_MaximalAirPressure = i_MaxAirPressure;
+            m_CurrentAirPressure = i_CurrentAirPressure;
         }
 
-        // $Or - Change to Setter.   
-        // Feels kinda right. He only required it do be in a method, setters are methods... 
-        private void inflateWheel(float i_AmountOfAirToAdd)
+        public void inflateWheel(float i_AmountOfAirToAdd)
         {
-            // Question for Guy - I don't think a Try Catch block is neccessary here, since he explained we must do it only 
-            // when we try to access or modify another element, like a file, device, connection... it does not make sense that a different entity than Wheel will change the wheels stats.
-            if(m_CurrentAirPressure + i_AmountOfAirToAdd > m_MaximalAirPressure)
+            if(i_AmountOfAirToAdd < 0 ||m_CurrentAirPressure + i_AmountOfAirToAdd > m_MaximalAirPressure)
             {
-                m_CurrentAirPressure += i_AmountOfAirToAdd;
+                throw new ValueOutOfRangeExecption("You are trying to add too much air, or inputting a negative number as air pressure unit value. ", 0, m_MaximalAirPressure - m_CurrentAirPressure);
+                
             }
+            m_CurrentAirPressure += i_AmountOfAirToAdd;
+        }
+
+        public override string ToString()
+        {
+            return String.Format(@"Manufacturer: {0}
+Current air pressure Units: {1}.
+The max air pressure is: {2}", m_Manufacturer, m_CurrentAirPressure, m_MaximalAirPressure);
         }
 
     }

@@ -7,25 +7,27 @@
         readonly string m_CustomerPhoneNumber;
         eVehicleStatus m_VehicleStatus;
 
+       
+
+        public eVehicleStatus VehicleStatus
+        {
+            get
+            {
+                return m_VehicleStatus;
+            }
+            set
+            {
+                // $Or - Throw exception not the right enum...
+                m_VehicleStatus = value;
+            }
+        }
+
         internal CustomerData(string i_CustomerName, string i_CustomerPhoneNumber)
         {
             m_CustomerName = i_CustomerName;
             m_CustomerPhoneNumber = i_CustomerPhoneNumber;
         }
 
-
-        internal eVehicleStatus VehicleStatus
-        {
-            get
-            {
-                return m_VehicleStatus;
-
-            }
-            set
-            {
-                m_VehicleStatus = value;
-            }
-        }
 
         public override string ToString()
         {

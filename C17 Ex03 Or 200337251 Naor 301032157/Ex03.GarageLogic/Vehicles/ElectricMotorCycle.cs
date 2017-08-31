@@ -6,9 +6,21 @@ namespace Ex03.GarageLogic
 {
     internal class ElectricMotorcycle : Motorcycle
     {
-        public ElectricMotorcycle()
+        internal ElectricMotorcycle(string i_ModelName, string i_LicenceNumber)
+            : base( i_ModelName, i_LicenceNumber)
         {
-            
+            Engine = new ElectricEngine(); // Please Add needed params in here.
+        }
+
+        public override void InitVehicleAdditionalProperties()
+        {
+            //$Or - Need to somehowadd the properties here. We don't have polymorphism.
+            InitElectricMotorcycleProperties();
+            return;
+        }
+        private void InitElectricMotorcycleProperties()
+        {
+            return;
         }
     }
 }
