@@ -33,7 +33,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ConsoleUI.cs" />
+    <Compile Include="eFilterStatusOptions.cs" />
+    <Compile Include="eGarageSystemOptions.cs" />
+    <Compile Include="FloatParcer.cs" />
+    <Compile Include="IntParcer.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="PropertyParcer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Ex03.GarageLogic, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
