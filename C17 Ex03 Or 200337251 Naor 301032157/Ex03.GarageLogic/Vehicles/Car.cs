@@ -4,14 +4,14 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-   internal abstract class Car : Vehicle
+    internal abstract class Car : Vehicle
     {
         eCarColor m_CarColor;
         eNumDoorsInCar m_NumOfDoorsInCar;
         const int k_numOfWheels = 4;
-        const int k_maximalAirPressure = 32;
+        const int k_MaxAirPressure = 32;
 
-        public Car(string i_ModelName, string i_LicenceNumber) 
+        public Car(string i_ModelName, string i_LicenceNumber)
             : base(i_ModelName, i_LicenceNumber, k_numOfWheels)
         {
             m_CarColor = eCarColor.Black;
@@ -19,12 +19,19 @@ namespace Ex03.GarageLogic
         }
 
         // $ Or - need to create a method for the enum validation.
-        internal override void SetWheels(string i_ProducerName)
+        internal override float getMaxAirPressure()
         {
-            for (int i = 0; i < k_numOfWheels; ++i)
-            {
-                Wheels.Add(new Wheel(i_ProducerName, default(float), k_maximalAirPressure));
-            }
+            return k_MaxAirPressure;
         }
+
+        public override void InitUniqueVehicleTypeProperties()
+        {
+            InitUniqueCarProperties();
+        }
+        private void InitUniqueCarProperties()
+        {
+
+        }
+
     }
 }

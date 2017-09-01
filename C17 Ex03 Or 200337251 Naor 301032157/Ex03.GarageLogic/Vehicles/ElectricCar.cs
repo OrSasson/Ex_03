@@ -13,17 +13,5 @@ namespace Ex03.GarageLogic
         {
            Engine = new ElectricEngine(k_MaxBatteryCapacity); 
         }
-
-        public override void InitVehicleAdditionalProperties()
-        {
-            //$Or - Need to somehow add the properties here. We don't have polymorphism.
-            InitElectricCarProperties();
-            return;
-        }
-
-        private void InitElectricCarProperties()
-        {
-            return;
-        }
     }
 }

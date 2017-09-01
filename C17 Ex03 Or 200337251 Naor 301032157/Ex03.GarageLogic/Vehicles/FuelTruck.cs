@@ -14,14 +14,10 @@ namespace Ex03.GarageLogic
             Engine = new FuelEngine(FuelEngine.eFuelType.Soler, k_MaxFuelAmount);
         }
 
-        public override void InitVehicleAdditionalProperties()
+        public override void InitUniqueVehicleTypeProperties()
         {
             throw new NotImplementedException();
         }
 
-        internal override void SetWheels(string i_ProducerName)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

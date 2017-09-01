@@ -7,13 +7,13 @@ namespace Ex03.GarageLogic
     internal abstract class Truck : Vehicle
     {
         const int k_numOfWheels = 12;
-        const int k_maximalAirPressure = 34;
+        const int k_MaxAirPressure = 34;
         private bool m_CarryigHazardousMaterial;
         float m_MaxLoadingWeight;
         
 
         public Truck(string i_ModelName, string i_LicenceNumber) 
-            : base(i_ModelName, i_LicenceNumber, K_numOfWheels)
+            : base(i_ModelName, i_LicenceNumber, NumOfWheels)
         {
             m_MaxLoadingWeight = default(float);
             m_CarryigHazardousMaterial = default(bool);
@@ -32,7 +32,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public static int K_numOfWheels
+        public static int NumOfWheels
         {
             get
             {
@@ -40,23 +40,13 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public static int K_maximalAirPressure
+        internal override float getMaxAirPressure()
         {
-            get
-            {
-                return k_maximalAirPressure;
-            }
+            return k_MaxAirPressure;
         }
 
-        public abstract override void InitVehicleAdditionalProperties();
+        public abstract override void InitUniqueVehicleTypeProperties();
         
-        //Duplicate Code!!!!
-        //protected override void SetWheels(string i_ProducerName)
-        //{
-        //    for (int i = 0; i < k_numOfWheels; ++i)
-        //    {
-        //        m_Wheels.Add(new Wheel(i_ProducerName, 0, k_maximalAirPressure));
-        //    }
-        //}
+        
     }
 }

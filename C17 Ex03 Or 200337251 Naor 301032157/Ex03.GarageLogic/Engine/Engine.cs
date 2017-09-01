@@ -5,34 +5,57 @@ using System.Text;
 namespace Ex03.GarageLogic
 {
     internal abstract class Engine
-    {
-        // Or - Should this be const?
-        private readonly float r_MaxEnergyAmount;
-        private float m_CurrentEnergyAmount;
+    { // Should currentEnergy initialization be in the ctor here?
+        private float m_CurrentEnergy;
+        private readonly float r_MaxEnergy;
 
-        public Engine(float i_MaxEnergyAmount)
+        internal Engine(float i_MaxEnergyAmount)
         {
-            r_MaxEnergyAmount = i_MaxEnergyAmount;
-            m_CurrentEnergyAmount = default(float);
-        }
-
-        protected float MaxEnergyAmount
-        {
-            get
-            {
-                return r_MaxEnergyAmount;
-            }
+            r_MaxEnergy = i_MaxEnergyAmount;
         }
 
         protected float CurrentEnergyAmount
         {
             get
             {
-                return m_CurrentEnergyAmount;
+                return m_CurrentEnergy;
             }
-            set
+            //set
+            //{
+            //    m_CurrentEnergy = value;
+            //}
+        }
+
+        private float calculateRemainingEnergyPercentage()
+        {
+            return 100f * m_CurrentEnergy / r_MaxEnergy;
+        }
+
+        internal float RemainingEnergyPercentage
+        {
+            get
             {
-                m_CurrentEnergyAmount = value;
+                return calculateRemainingEnergyPercentage();
+            }
+        }
+
+        protected float MaxEnergyAmount
+        {
+            get
+            {
+                return r_MaxEnergy;
+            }
+        }
+
+        internal void AddEnergyToVehicle(float i_EnergyToAdd)
+        {
+            if (i_EnergyToAdd > r_MaxEnergy - m_CurrentEnergy || i_EnergyToAdd < 0)
+            {
+                throw new ValueOutOfRangeExecption("The inputted Fuel amount is out of range.", 0 , r_MaxEnergy - m_CurrentEnergy);
+            }
+            else
+            {
+                m_CurrentEnergy += i_EnergyToAdd;
             }
         }
     }

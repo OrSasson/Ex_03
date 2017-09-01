@@ -7,8 +7,10 @@ namespace Ex03.GarageLogic
     internal abstract class Motorcycle : Vehicle
     {
         // Please make sure consts are correct
-        const float k_maximalAirPressure = 28f;
+        const float k_MaxAirPressure = 28f;
         const int k_numOfWheels = 2;
+        eMotorcylceLicenseType m_LicenseType;
+        int m_EngineVolume; // m_EngineCapacity??
 
         internal Motorcycle(string i_ModelName, string i_LicenceNumber) 
             : base(i_ModelName, i_LicenceNumber, k_numOfWheels)
@@ -16,15 +18,11 @@ namespace Ex03.GarageLogic
            
         }
 
-        internal override void SetWheels(string i_ManufacturerName)
+        internal override float getMaxAirPressure()
         {
-            for (int i = 0; i < k_numOfWheels; ++i)
-            {
-                Wheels.Add(new Wheel(i_ManufacturerName, 0, k_maximalAirPressure));
-            }
+            return k_MaxAirPressure;
         }
 
-        eMotorcylceLicenseType m_LicenseType;
-        int m_EngineVolume; // m_EngineCapacity??
+      
     }
 }

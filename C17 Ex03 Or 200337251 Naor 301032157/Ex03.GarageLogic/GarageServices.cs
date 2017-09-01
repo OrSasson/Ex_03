@@ -47,13 +47,15 @@ namespace Ex03.GarageLogic
             return s_GarageEntries.ContainsKey(i_Vehicle);
         }
 
-        public static void AddNewGarageEntry(eVehicleType i_VehicleType, string i_ModelName, string i_LicenceNumber, string i_WheelManfucaturerName, string i_OwnerName, string i_OwnerPhoneNum)
+        public static void AddNewGarageEntry(eVehicleType i_VehicleType, string i_ModelName, string i_LicenceNumber, string i_WheelManfucaturerName, string i_OwnerName, string i_OwnerPhoneNum, float wheelCurrentAirPressure)
         {
             string propertiesToAdd = string.Empty;
 
             // Check if the casting works.
             Vehicle vehicleToAdd = VehicleFactory.CreateVehicle((int)i_VehicleType, i_ModelName, i_LicenceNumber);
-            vehicleToAdd.SetWheels(i_WheelManfucaturerName);
+            vehicleToAdd.SetWheels(i_WheelManfucaturerName, wheelCurrentAirPressure);
+
+
             CustomerData vehicleCustomerData = new CustomerData(i_OwnerName, i_OwnerPhoneNum);
 
             s_GarageEntries.Add(vehicleToAdd, vehicleCustomerData);

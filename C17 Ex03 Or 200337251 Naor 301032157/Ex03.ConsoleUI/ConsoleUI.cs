@@ -30,11 +30,12 @@ namespace Ex03.ConsoleUI
             string wheelManfucaturerName = "Wrengler";
             string ownerName = " Moshiko";
             string ownerPhoneNum = "050-123456";
+            float wheelCurrentAirPressure = 0;
 
             // $Or - Add This code After You used your methods to get all the input.
             try
             {
-                GarageServices.AddNewGarageEntry(vehicleType, modelName, licenceNumber, ownerName, ownerPhoneNum, wheelManfucaturerName);
+                GarageServices.AddNewGarageEntry(vehicleType, modelName, licenceNumber, ownerName, ownerPhoneNum, wheelManfucaturerName, wheelCurrentAirPressure);
             }
             // Is it even relevant to show this exception to user?
             catch (Exception ex)
