@@ -36,13 +36,11 @@ namespace Ex03.ConsoleUI
             try
             {
                 Dictionary<string, string> uniqueVehicleProperties = GetUniquePropertiesByVehicleType(vehicleType);
+                // Should i really create an instance?
+           
                 GarageServices.AddNewGarageEntry(vehicleType, modelName, licenceNumber, ownerName, ownerPhoneNum, wheelManfucaturerName, wheelCurrentAirPressure,  uniqueVehicleProperties);
                 //Vehicle vehicleToAdd = GarageServices.AddNewVehicleEntry(vehicleType, modelName, licenceNumber);
                 //vehicleToAdd.SetWheels(i_WheelManfucaturerName, wheelCurrentAirPressure);
-
-
-
-
             }
             // Is it even relevant to show this exception to user?
             catch (Exception ex)
