@@ -6,15 +6,17 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
-        protected readonly string m_ModelName;
-        Dictionary<string, object> additionaPropertiesDictionary;
+        internal abstract float getMaxAirPressure();
+        internal abstract void InitUniqueVehicleProperties(Dictionary<string, string> additionaPropertiesDictionary);
 
-        private readonly string r_LicensePlateNum;
-        internal string LicensePlateNum
+        protected readonly string m_ModelName;
+
+        private readonly string r_LicenseNumber;
+        internal string LicenseNumber
         {
             get
             {
-                return r_LicensePlateNum;
+                return r_LicenseNumber;
             }
         }
 
@@ -48,12 +50,11 @@ namespace Ex03.GarageLogic
             r_NumOfWheels = i_NumOfWheels;
             m_Wheels = new List<Wheel>();
         }
-        public abstract void InitUniqueVehicleTypeProperties();
 
         // Overrding Object's methods.
         public override int GetHashCode()
         {
-            return r_LicensePlateNum.GetHashCode();
+            return r_LicenseNumber.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -63,7 +64,7 @@ namespace Ex03.GarageLogic
 
             if(toCompareTo != null)
             {
-                equals = r_LicensePlateNum == toCompareTo.r_LicensePlateNum;
+                equals = r_LicenseNumber == toCompareTo.r_LicenseNumber;
             }
 
             return base.Equals(obj);
@@ -76,12 +77,19 @@ namespace Ex03.GarageLogic
                 m_Wheels.Add(new Wheel(i_ManufacturerName, i_CurrentAirPressure, getMaxAirPressure()));
             }
         }
-        internal abstract float getMaxAirPressure();
+
+        internal void inflateAllWheelsToMax()
+        {
+            foreach (Wheel wheel in m_Wheels)
+            {
+                wheel.InflateWheelToMaxCapacity();
+            }
+        }
 
         // Overriding Operators.
         public static bool operator == (Vehicle i_Lvehicle, Vehicle i_Rvehicle)
         {
-            return i_Lvehicle.r_LicensePlateNum == i_Rvehicle.r_LicensePlateNum;
+            return i_Lvehicle.r_LicenseNumber == i_Rvehicle.r_LicenseNumber;
         }
 
         public static bool operator != (Vehicle i_Lvehicle, Vehicle i_Rvehicle)

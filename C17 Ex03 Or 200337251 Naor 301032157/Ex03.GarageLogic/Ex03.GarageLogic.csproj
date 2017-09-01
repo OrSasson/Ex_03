@@ -43,6 +43,7 @@
     <Compile Include="enums\eFuelType.cs" />
     <Compile Include="enums\eVehicleType.cs" />
     <Compile Include="enums\eVehicleStatus.cs" />
+    <Compile Include="GarageConstants.cs" />
     <Compile Include="GarageServices.cs" />
     <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="VehicleFactory.cs" />

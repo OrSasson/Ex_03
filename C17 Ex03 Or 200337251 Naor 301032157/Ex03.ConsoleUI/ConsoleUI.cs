@@ -35,7 +35,14 @@ namespace Ex03.ConsoleUI
             // $Or - Add This code After You used your methods to get all the input.
             try
             {
-                GarageServices.AddNewGarageEntry(vehicleType, modelName, licenceNumber, ownerName, ownerPhoneNum, wheelManfucaturerName, wheelCurrentAirPressure);
+                Dictionary<string, string> uniqueVehicleProperties = GetUniquePropertiesByVehicleType(vehicleType);
+                GarageServices.AddNewGarageEntry(vehicleType, modelName, licenceNumber, ownerName, ownerPhoneNum, wheelManfucaturerName, wheelCurrentAirPressure,  uniqueVehicleProperties);
+                //Vehicle vehicleToAdd = GarageServices.AddNewVehicleEntry(vehicleType, modelName, licenceNumber);
+                //vehicleToAdd.SetWheels(i_WheelManfucaturerName, wheelCurrentAirPressure);
+
+
+
+
             }
             // Is it even relevant to show this exception to user?
             catch (Exception ex)
@@ -44,8 +51,27 @@ namespace Ex03.ConsoleUI
             }
         }
 
+        private Dictionary<string, string> GetUniquePropertiesByVehicleType(eVehicleType vehicleType)
+        {
+            Dictionary<string, string> uniqueVehicleProperties = new Dictionary<string, string>();
+            switch (vehicleType)
+            {
+                case eVehicleType.Car:
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyColor, GetStringFromUser(Console.ReadLine()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyNumOfDoors, GetStringFromUser(Console.ReadLine()));
+                    break;
+                case eVehicleType.Motorcycle:
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyEngineVolume, GetStringFromUser(Console.ReadLine()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyLicenseType, GetStringFromUser(Console.ReadLine()));
+                    break;
+                case eVehicleType.Truck:
+                    uniqueVehicleProperties.Add(GarageConstants.k_CarryigHazardousMaterial, GetStringFromUser(Console.ReadLine()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_MaxLoadingWeight, GetStringFromUser(Console.ReadLine()));
+                    break;
+            }
+            return uniqueVehicleProperties;
+            }
 
-        
         public void UserOptions()
         {
             int userChoice;

@@ -15,7 +15,7 @@ namespace Ex03.GarageLogic
             Engine = new FuelEngine(FuelEngine.eFuelType.Octan98, k_MaxFuelAmount);
         }
 
-        public override void InitUniqueVehicleTypeProperties()
+        public override void InitUniqueVehicleProperties()
         {
             //$Or - Need to somehow add the properties here. We don't have polymorphism.
             InitFuelCarProperties();

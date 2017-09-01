@@ -9,6 +9,7 @@ namespace Ex03.GarageLogic
         // Please make sure consts are correct
         const float k_MaxAirPressure = 28f;
         const int k_numOfWheels = 2;
+ 
         eMotorcylceLicenseType m_LicenseType;
         int m_EngineVolume; // m_EngineCapacity??
 
@@ -23,6 +24,21 @@ namespace Ex03.GarageLogic
             return k_MaxAirPressure;
         }
 
-      
+        private void InitUniqueMotorcycleProperties(Dictionary<string, string> additionaPropertiesDictionary)
+        {
+            string MotoryclePropertyValue;
+            
+            additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyLicenseType, out MotoryclePropertyValue);
+            m_LicenseType = (eMotorcylceLicenseType)Enum.Parse(typeof(eMotorcylceLicenseType), MotoryclePropertyValue);
+
+            additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyEngineVolume, out MotoryclePropertyValue);
+            m_EngineVolume = int.Parse(MotoryclePropertyValue);
+        }
+
+        internal override void InitUniqueVehicleProperties(Dictionary<string, string> additionaPropertiesDictionary)
+        {
+            InitUniqueMotorcycleProperties(additionaPropertiesDictionary);
+        }
+
     }
 }

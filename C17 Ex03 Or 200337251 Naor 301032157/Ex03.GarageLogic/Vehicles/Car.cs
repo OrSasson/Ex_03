@@ -24,13 +24,21 @@ namespace Ex03.GarageLogic
             return k_MaxAirPressure;
         }
 
-        public override void InitUniqueVehicleTypeProperties()
+        // Need to make this generic, so we won't duplicate code.
+        private void InitUniqueCarProperties(Dictionary<string, string> additionaPropertiesDictionary)
         {
-            InitUniqueCarProperties();
-        }
-        private void InitUniqueCarProperties()
-        {
+            string carPropertyValue;
 
+            additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyColor, out carPropertyValue);
+            m_CarColor = (eCarColor)Enum.Parse(typeof(eCarColor), carPropertyValue);
+
+            additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyNumOfDoors, out carPropertyValue);
+            m_NumOfDoorsInCar = (eNumDoorsInCar)Enum.Parse(typeof(eNumDoorsInCar), carPropertyValue);
+        }
+
+        internal override void InitUniqueVehicleProperties(Dictionary<string, string> additionaPropertiesDictionary)
+        {
+            InitUniqueCarProperties(additionaPropertiesDictionary);
         }
 
     }

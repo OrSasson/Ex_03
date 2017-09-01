@@ -14,27 +14,37 @@ namespace Ex03.GarageLogic
         {
         }
 
-        
-        public string ShowVehiclesByStatus(eVehicleStatus i_VehicleStatus)
+        //Menu Option 1 - Add New Vehicle (chainging status follows).
+        // Still need to make sub methods.
+        private static void AddNewGarageEntry(eVehicleType i_VehicleType, string i_ModelName, string i_LicenceNumber, string i_WheelManfucaturerName, string i_OwnerName, string i_OwnerPhoneNum, float i_WheelCurrentAirPressure, Dictionary<string, string> uniqueVehicleProperties)
         {
-            //int licenseNumber;
-            //CustomerData customerData;
-            //StringBuilder vehiclesByStatusSB = new StringBuilder();
+            Vehicle vehicleToAdd = VehicleFactory.CreateVehicle((int)i_VehicleType, i_ModelName, i_LicenceNumber);
+            vehicleToAdd.SetWheels(i_WheelManfucaturerName, i_WheelCurrentAirPressure);
+            vehicleToAdd.InitUniqueVehicleProperties(uniqueVehicleProperties);
 
-            //foreach (Vehicle vehicle in m_VehicleList)
-            //{
-            //    int.TryParse(vehicle.LicensePlateNum, out licenseNumber);
-            //    m_GarageData.TryGetValue(licenseNumber, out customerData);
-            //    vehiclesByStatusSB.AppendLine(licenseNumber.ToString());
-            //}
+            CustomerData vehicleCustomerData = new CustomerData(i_OwnerName, i_OwnerPhoneNum);
 
-            //return vehiclesByStatusSB.ToString();
-            string bababa = "This is all the vehicles";
-            return bababa;
+            s_GarageEntries.Add(vehicleToAdd, vehicleCustomerData);
         }
 
-        // $Or - These 3 methods will be option 1 in the menu. Use your UI to create this flow - if exists, change status. else - AddNewGarage Entry.
-        public void ChangeVehicleStatus(Vehicle i_VehicleToChange, eVehicleStatus i_NewVehicleStatus)
+        //Menu Option 2 - Display vehicles List.
+        private static List<string> GetVehiclesListInGarage(eVehicleStatus i_vehicleStatusFilter, bool i_IncludeFiltering)
+        {
+            List<string> vehiclesList = new List<string>();
+
+            foreach (KeyValuePair<Vehicle, CustomerData> garageEntry in s_GarageEntries)
+            {
+                if (i_IncludeFiltering && garageEntry.Value.VehicleStatus == i_vehicleStatusFilter)
+                {
+                    vehiclesList.Add(garageEntry.Key.LicenseNumber);
+                }
+            }
+
+            return vehiclesList;
+        }
+
+        //Menu Option 3 - Change vehicle's Status.
+        private void ChangeVehicleStatus(Vehicle i_VehicleToChange, eVehicleStatus i_NewVehicleStatus)
         {
             CustomerData customerData;
 
@@ -42,43 +52,81 @@ namespace Ex03.GarageLogic
             customerData.VehicleStatus = i_NewVehicleStatus;
         }
 
-        public bool IsVehicleInGarage(Vehicle i_Vehicle)
+        //Menu Option 4 - Inflate Wheels to max.
+        private void InflateVehicleWheelsToMax(Vehicle vehicle)
+        {
+            vehicle.inflateAllWheelsToMax();
+        }
+
+        //Menu Option 5 - Add Fuel to a Vehicle that runs on Fuel.
+        public static void AddFuel(string i_LicenceNumber, float i_EnergyToAdd, int i_FuelType, Vehicle i_Vehicle)
+        {
+            Engine vehicleEngineType = i_Vehicle.Engine;
+            FuelEngine fuelEngine = vehicleEngineType as FuelEngine;
+            FuelEngine.eFuelType fuelType = (FuelEngine.eFuelType)i_FuelType;
+
+            if (fuelEngine.FuelType != fuelType)
+            {
+                throw new ArgumentException(string.Format("Invalid Fuel Type! This vehicle runs on {0}", fuelEngine.FuelType));
+            }
+            else
+            {
+                (vehicleEngineType as FuelEngine).AddEnergyToVehicle(i_EnergyToAdd);
+            }
+        }
+
+        //Menu Option 6 - Add Fuel to a Vehicle that runs on Fuel.
+        public static void ChargeBattery(string i_LicenceNumber, float i_EnergyToAdd, Vehicle i_Vehicle)
+        { 
+            Engine vehicleEngineType = i_Vehicle.Engine;
+            (vehicleEngineType as ElectricEngine).AddEnergyToVehicle(i_EnergyToAdd);
+        }
+
+        //Menu Option 7 - Display Full statistics of the Garage entry.
+        public  string showGarageEntryData(Vehicle i_Vehicle)
+        {
+            return s_GarageEntries[i_Vehicle].ToString() + i_Vehicle.ToString();
+        }
+
+
+        // Utitlity Function. Needed for most options in menu.
+        private bool IsVehicleInGarage(Vehicle i_Vehicle)
         {
             return s_GarageEntries.ContainsKey(i_Vehicle);
         }
 
-        public static void AddNewGarageEntry(eVehicleType i_VehicleType, string i_ModelName, string i_LicenceNumber, string i_WheelManfucaturerName, string i_OwnerName, string i_OwnerPhoneNum, float wheelCurrentAirPressure)
+        private bool tryGetVehicleByLicense(string i_licenseNumer, out Vehicle o_Vehicle)
         {
-            string propertiesToAdd = string.Empty;
+            bool exists = false;
+            o_Vehicle = null;
 
-            // Check if the casting works.
-            Vehicle vehicleToAdd = VehicleFactory.CreateVehicle((int)i_VehicleType, i_ModelName, i_LicenceNumber);
-            vehicleToAdd.SetWheels(i_WheelManfucaturerName, wheelCurrentAirPressure);
-
-
-            CustomerData vehicleCustomerData = new CustomerData(i_OwnerName, i_OwnerPhoneNum);
-
-            s_GarageEntries.Add(vehicleToAdd, vehicleCustomerData);
-        }
-
-
-        // $Or - This method will be option 2 in the menu. Just pass the right enum value to display the desired results. Display options in the UI accordingly (repair, paid...) and print the list returned.
-        public static List<string> GetVehicles(eVehicleStatus i_vehicleStatusFilter, bool i_IncludeFiltering) 
-        {
-            List<string> vehiclesList = new List<string>();
-
-            foreach (KeyValuePair<Vehicle,CustomerData> garageEntry in s_GarageEntries)
+            foreach (Vehicle vehicle in s_GarageEntries.Keys)
             {
-                if(i_IncludeFiltering && garageEntry.Value.VehicleStatus == i_vehicleStatusFilter)
+                if (i_licenseNumer == vehicle.LicenseNumber)
                 {
-                    vehiclesList.Add(garageEntry.Key.LicensePlateNum);
+                    exists = true;
+                    o_Vehicle = vehicle;
+                    break;
                 }
             }
-
-            return vehiclesList;
+            return exists;
         }
+        
+        //public static bool IsVehicleNotInGarage(string i_LicenceNumber)
+        //{
+        //    bool exists = false;
+        //    foreach (Vehicle currentVehicle in s_GarageEntries.Keys)
+        //    {
+        //        if (i_LicenceNumber == currentVehicle.LicenseNumber)
+        //        {
+        //            exists = true;
+        //            break;
+        //        }
+        //    }
 
-
+        //    return exists;
+        //}
+    }
 
     }
 
