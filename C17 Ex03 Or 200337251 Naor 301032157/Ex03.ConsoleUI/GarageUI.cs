@@ -13,7 +13,7 @@ namespace Ex03.ConsoleUI
             //loadGarageSystem(); // Load?
         }
 
-        public static void DisplayUserOptions()
+        private static void displayUserOptions()
         {
             Console.WriteLine(@"Please chose the required service:
 1.{0}.
@@ -32,123 +32,215 @@ namespace Ex03.ConsoleUI
 "View vehicle full detailes (License plate)");
         }
 
-        public void GarageMenu()
+        private void GarageMenu()
         {
-            DisplayUserOptions();
+           
             loadGarageSystem();
 
         }
 
         private void loadGarageSystem()
         {
+            while (true)
+            {
+                try
+                {
+                    displayUserOptions();
+                    string choice = getAndValidateUserMenuSelection();
+
+                    //eGarageServicesMenuOptions GarageSystemService = eGarageServicesMenuOptions.NoSelection;
+                    eGarageServicesMenuOptions GarageSystemService = (eGarageServicesMenuOptions)Enum.Parse(typeof(eGarageServicesMenuOptions), choice);
+
+                    Console.WriteLine("You chose option number {0}. ", choice);
+
+                    switch (GarageSystemService)
+                    {
+                        case eGarageServicesMenuOptions.AssignVehicleToRepair: // Option 1 in menu
+
+                            addVehicleToGarage();
+                            break;
+
+                        case eGarageServicesMenuOptions.ViewVehiclesPlateNumbersByStatus: // Option 2 in menu
+                            displayVehicleList();
+                            break;
+
+                        case eGarageServicesMenuOptions.ChangeVehicleStatus: // Option 3 in menu
+                            ChangeVehicleStatus();
+                            break;
+
+                        case eGarageServicesMenuOptions.InflateVehicleWheelsToMax: // Option 4 in menu
+                            InflateWheelsToMax();
+                            break;
+
+                        case eGarageServicesMenuOptions.RefuelFuelBasedVehicle: // Option 5 in menu
+                            refuelCar();
+                            break;
+
+                        case eGarageServicesMenuOptions.RechargeElectricBasedVehicle: // Option 6 in menu
+                            rechargeElectricVehicle();
+                            break;
+
+                        case eGarageServicesMenuOptions.ViewVehicleInfo: // Option 7 in menu
+                            showGarageEntryData();
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine("The program was terminated." + ex.Message);
+                }
+            }
+        }
+
+        private void showGarageEntryData()
+        {
+            Vehicle vehicleToShowInfo = null;
+            string vehicleToShowInfoStr = GarageUIUtils.getVehicleLicenseNumber();
+            GarageServices.tryGetVehicleByLicense(vehicleToShowInfoStr, out vehicleToShowInfo);
+            GarageServices.showGarageEntryData(vehicleToShowInfo);
+        }
+
+        private void rechargeElectricVehicle()
+        {
+            Vehicle vehicleToRecharge = null;
+            string vehicleToRechargeStr = GarageUIUtils.getVehicleLicenseNumber();
+            GarageServices.tryGetVehicleByLicense(vehicleToRechargeStr, out vehicleToRecharge);
+
+            //$Or - Add method.
+            Console.WriteLine("Please enter the amount of energy to charge");
+            float energyToadd = float.Parse(Console.ReadLine());
+           
+            GarageServices.ChargeBattery(vehicleToRechargeStr, energyToadd, vehicleToRecharge);
+        }
+
+        private void refuelCar()
+        {
+            Vehicle vehicleToFuel = null;
+            string vehicleToFuelStr = GarageUIUtils.getVehicleLicenseNumber();
+            float fuelToadd = float.Parse(Console.ReadLine());
+         //   GarageUIUtils.
+
+            if (GarageServices.tryGetVehicleByLicense(vehicleToFuelStr, out vehicleToFuel))
+            {
+           //      GarageServices.AddFuel(vehicleToFuelStr, fuelToadd, i_FuelType 
+            }
+            else
+            {
+                errorFindingVehicle();
+            }
+        }
+
+        private void InflateWheelsToMax()
+        {
+            Vehicle vehicleToInflateWheels = null;
+            string vehicleToInflateLicenseNumStr = GarageUIUtils.getVehicleLicenseNumber();
+            if(GarageServices.tryGetVehicleByLicense(vehicleToInflateLicenseNumStr, out vehicleToInflateWheels))
+               {
+                GarageServices.InflateVehicleWheelsToMax(vehicleToInflateWheels);
+            }
+            else
+            {
+                errorFindingVehicle();
+            }
+        }
+
+        private void errorFindingVehicle()
+        {
+            Console.WriteLine("Could not find Vehicle!!!");
+        }
+
+        private void ChangeVehicleStatus()
+        {
+            Vehicle vehicleToChangeStatus = null;
+            eVehicleStatus newVehicleStatus = GarageUIUtils.getVehicleStatus();
+            if (GarageServices.tryGetVehicleByLicense(GarageUIUtils.getVehicleLicenseNumber(), out vehicleToChangeStatus))
+            {
+                GarageServices.ChangeVehicleStatus(vehicleToChangeStatus, newVehicleStatus);
+            }
+            else
+            {
+                errorFindingVehicle();
+            }
+        }
+
+        private void displayVehicleList()
+        {
+            List<string> vehiclesList = new List<string>();
+
+            Console.WriteLine("Would you like to include filtering? Enter y/n.");
+            string filter = Console.ReadLine();
+
+            bool v_includeFilter = true;
+            eVehicleStatus vehicleStatus = eVehicleStatus.NotDetermined;
+
+            if (filter == "y" || filter == "Y")
+            {
+                vehicleStatus = GarageUIUtils.getVehicleStatus();
+                vehiclesList = GarageServices.GetVehiclesListInGarage(vehicleStatus, v_includeFilter);
+            }
+            else if (filter == "n" || filter == "N")
+            {
+                vehiclesList = GarageServices.GetVehiclesListInGarage(eVehicleStatus.NotDetermined, !v_includeFilter);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input");
+                displayVehicleList();
+            }
+            foreach (string vehicleLicenseNumber in vehiclesList)
+            {
+                Console.WriteLine(vehicleLicenseNumber);
+            }
+        }
+
+        private void addVehicleToGarage()
+        {
+            Vehicle vehicleToAdd = null;
+
+            string licenseNumberFromuser = GarageUIUtils.getVehicleLicenseNumber();
+            if (GarageServices.tryGetVehicleByLicense(licenseNumberFromuser, out vehicleToAdd))
+            {
+                GarageServices.ChangeVehicleStatus(vehicleToAdd, eVehicleStatus.Repaired);
+            }
+            else
+            {
+                eVehicleType vehicleType = GarageUIUtils.GetVehicleType();
+                string modelName = GarageUIUtils.getVehicleModelName();
+                string wheelManfucaturerName = GarageUIUtils.getWheelManufacturerName();
+                string ownerName = GarageUIUtils.getVehicleOwnerName();
+                string ownerPhoneNum = GarageUIUtils.getVehicleOwnerPhoneNum();
+                float wheelCurrentAirPressure = GarageUIUtils.getCurrentTiersAirPressure();
+
+                try
+                {
+                    Dictionary<string, string> uniqueVehicleProperties = GetUniquePropertiesByVehicleType(vehicleType);
+                    GarageServices.AddNewGarageEntry(vehicleType, modelName, licenseNumberFromuser, ownerName, ownerPhoneNum, wheelManfucaturerName, wheelCurrentAirPressure, uniqueVehicleProperties);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        private string getAndValidateUserMenuSelection()
+        {
             string choice = Console.ReadLine();
-            eGarageServicesMenuOptions GarageSystemService = eGarageServicesMenuOptions.NoSelection;
+            int userChoiseAsInt;
+            bool validInput = true;
+            bool inMenu = true;
 
-            try
+            do
             {
-                GarageSystemService = (eGarageServicesMenuOptions)Enum.Parse(typeof(eGarageServicesMenuOptions), choice);
-            }
-            catch (Exception)
-            {
-                throw new FormatException("Wrong input, please chose one option from the menu.");
-            }
+                validInput = int.TryParse(choice, out userChoiseAsInt);
+                inMenu = (userChoiseAsInt >= (int)eGarageServicesMenuOptions.AssignVehicleToRepair) && userChoiseAsInt <= ((int)eGarageServicesMenuOptions.ViewVehicleInfo);
+            } while (validInput != true || inMenu != true);
 
-            Console.WriteLine("You chose option number {0}. ", choice);
-
-            string LicenseNumber = GarageUIUtils.getVehicleLicenseNumber();
-
-            switch (GarageSystemService)
-            {
-                case eGarageServicesMenuOptions.AssignVehicleToRepair: // Option 1 in menu
-
-                    Vehicle vehicleToAdd = null;
-
-                    if (GarageServices.tryGetVehicleByLicense(LicenseNumber, out vehicleToAdd))
-                    {
-                        GarageServices.ChangeVehicleStatus(vehicleToAdd, eVehicleStatus.Repaired);
-                    }
-                    else
-                    {
-                        eVehicleType vehicleType = GarageUIUtils.GetVehicleType();
-                        string modelName = GarageUIUtils.getVehicleModelName();
-                        string licenseNumber = GarageUIUtils.getVehicleLicenseNumber();
-                        string wheelManfucaturerName = GarageUIUtils.getWheelManufacturerName();
-                        string ownerName = GarageUIUtils.getVehicleOwnerName();
-                        string ownerPhoneNum = GarageUIUtils.getVehicleOwnerPhoneNum();
-                        float wheelCurrentAirPressure = GarageUIUtils.getCurrentTiersAirPressure();
-
-                        try
-                        {
-                            Dictionary<string, string> uniqueVehicleProperties = GetUniquePropertiesByVehicleType(vehicleType);
-                            GarageServices.AddNewGarageEntry(vehicleType, modelName, licenseNumber, ownerName, ownerPhoneNum, wheelManfucaturerName, wheelCurrentAirPressure, uniqueVehicleProperties);
-                        }
-                        // Is it even relevant to show this exception to user?
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-                    }
-                    break;
-
-                case eGarageServicesMenuOptions.ViewVehiclesPlateNumbersByStatus: // Option 2 in menu
-                    bool v_includeFilter = true;
-                    eVehicleStatus vehicleStatus = eVehicleStatus.NotDetermined;
-
-                    vehicleStatus = GarageUIUtils.getVehicleStatus();
-                    GarageServices.GetVehiclesListInGarage(vehicleStatus, v_includeFilter);
-                    //Without filter.
-                    //GarageServices.GetVehiclesListInGarage(vehicleStatus, !v_includeFilter);
-                    break;
-
-                case eGarageServicesMenuOptions.ChangeVehicleStatus: // Option 3 in menu
-                    Vehicle vehicleToChangeStatus = null;
-                    eVehicleStatus newVehicleStatus = GarageUIUtils.getVehicleStatus();
-                    if (GarageServices.tryGetVehicleByLicense(GarageUIUtils.getVehicleLicenseNumber(), out vehicleToChangeStatus))
-                    {
-                        GarageServices.ChangeVehicleStatus(vehicleToChangeStatus, newVehicleStatus);
-                    }
-                    break;
-
-                case eGarageServicesMenuOptions.InflateVehicleWheelsToMax: // Option 4 in menu
-                    Vehicle vehicleToInflateWheels = null;
-                    string vehicleToInflateLicenseNumStr = GarageUIUtils.getVehicleLicenseNumber();
-                    GarageServices.tryGetVehicleByLicense(vehicleToInflateLicenseNumStr, out vehicleToInflateWheels);
-                    break;
-
-                case eGarageServicesMenuOptions.RefuelFuelBasedVehicle: // Option 5 in menu
-                    Vehicle vehicleToFuel = null;
-                    string vehicleToFuelStr = GarageUIUtils.getVehicleLicenseNumber();
-                    float fuelToadd = float.Parse(Console.ReadLine());
-
-                    if (GarageServices.tryGetVehicleByLicense(vehicleToFuelStr, out vehicleToFuel))
-                    {
-                        // GarageServices.AddFuel(vehicleToFuelStr, fuelToadd, vehicleToFuel);
-                    }
-                    else
-                    {
-                        Console.WriteLine("blabla...");
-                    }
-                    break;
-
-                case eGarageServicesMenuOptions.RechargeElectricBasedVehicle: // Option 6 in menu
-                    Vehicle vehicleToRecharge = null;
-                    string vehicleToRechargeStr = GarageUIUtils.getVehicleLicenseNumber();
-                    GarageServices.tryGetVehicleByLicense(vehicleToRechargeStr, out vehicleToRecharge);
-                    float energyToadd = float.Parse(Console.ReadLine());
-                    // Need to Add - Get FuelType, Get bla bla...
-                    GarageServices.ChargeBattery(vehicleToRechargeStr, energyToadd, vehicleToRecharge);
-                    break;
-
-                case eGarageServicesMenuOptions.ViewVehicleInfo: // Option 7 in menu
-                    Vehicle vehicleToShowInfo = null;
-                    string vehicleToShowInfoStr = GarageUIUtils.getVehicleLicenseNumber();
-                    GarageServices.tryGetVehicleByLicense(vehicleToShowInfoStr, out vehicleToShowInfo);
-                    GarageServices.showGarageEntryData(vehicleToShowInfo);
-                    break;
-
-                default:
-                    break;
-            }
+            return choice
         }
 
         private Dictionary<string, string> GetUniquePropertiesByVehicleType(eVehicleType vehicleType)
