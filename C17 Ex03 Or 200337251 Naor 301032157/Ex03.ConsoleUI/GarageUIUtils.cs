@@ -111,7 +111,7 @@ namespace Ex03.ConsoleUI
         internal static float getCurrentTiersAirPressure()
         {
             //we need to get the max wheel air pressure here
-            Console.WriteLine("Enter Vehicle Owner Name");
+            Console.WriteLine("Enter the wheel current air Pressure ");
             string currentAirPressure = Console.ReadLine();
 
             return float.Parse(currentAirPressure);

@@ -98,6 +98,7 @@ namespace Ex03.GarageLogic
                     break;
                 }
             }
+
             return exists;
         }
 
@@ -118,20 +119,5 @@ namespace Ex03.GarageLogic
 
             return exists;
         }
-
-        //public static bool IsVehicleNotInGarage(string i_LicenceNumber)
-        //{
-        //    bool exists = false;
-        //    foreach (Vehicle currentVehicle in s_GarageEntries.Keys)
-        //    {
-        //        if (i_LicenceNumber == currentVehicle.LicenseNumber)
-        //        {
-        //            exists = true;
-        //            break;
-        //        }
-        //    }
-
-        //    return exists;
-        //}
     }
 }

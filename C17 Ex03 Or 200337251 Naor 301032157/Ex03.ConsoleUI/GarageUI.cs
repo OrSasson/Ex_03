@@ -28,7 +28,7 @@ namespace Ex03.ConsoleUI
 "View license plates filtered by status",
 "Change vehicle status",
 "Inflate wheels in vehicle to max pressure",
-"Refule fuel type vehicle",
+"Refuel fuel type vehicle",
 "Recharge Electric type vehicle",
 "View vehicle full detailes",
 "Exit Garage Services System.");
@@ -54,12 +54,11 @@ namespace Ex03.ConsoleUI
                     //eGarageServicesMenuOptions GarageSystemService = eGarageServicesMenuOptions.NoSelection;
                     eGarageServicesMenuOptions GarageSystemService = (eGarageServicesMenuOptions)Enum.Parse(typeof(eGarageServicesMenuOptions), choice);
 
-                    Console.WriteLine("You chose option number {0}. ", choice);
+                    Console.WriteLine("You chose option number {0}.", choice);
 
                     switch (GarageSystemService)
                     {
                         case eGarageServicesMenuOptions.AssignVehicleToRepair: // Option 1 in menu
-
                             addVehicleToGarage();
                             break;
 
@@ -271,8 +270,8 @@ namespace Ex03.ConsoleUI
             switch (vehicleType)
             {
                 case eVehicleType.Car:
-                    uniqueVehicleProperties.Add(GarageConstants.k_KeyColor, GarageUIUtils.GetStringFromUser(GarageUIUtils.getCarColor()));
-                    uniqueVehicleProperties.Add(GarageConstants.k_KeyNumOfDoors, GarageUIUtils.GetStringFromUser(GarageUIUtils.getNumberOfDoorsInCar()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyColor, GarageUIUtils.getCarColor());//*
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyNumOfDoors, GarageUIUtils.getNumberOfDoorsInCar());//*
                     break;
                 case eVehicleType.Motorcycle:
                     uniqueVehicleProperties.Add(GarageConstants.k_KeyEngineVolume, GarageUIUtils.getMotorcycleEngineVolume());
