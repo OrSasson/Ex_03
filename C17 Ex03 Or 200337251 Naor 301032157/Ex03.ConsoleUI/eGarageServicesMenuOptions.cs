@@ -13,6 +13,7 @@ namespace Ex03.ConsoleUI
         InflateVehicleWheelsToMax,
         RefuelFuelBasedVehicle,
         RechargeElectricBasedVehicle,
-        ViewVehicleInfo
+        ViewVehicleInfo,
+        ExitGarageServices
     }
 }

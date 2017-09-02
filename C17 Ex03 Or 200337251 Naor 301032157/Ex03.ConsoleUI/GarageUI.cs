@@ -22,14 +22,16 @@ namespace Ex03.ConsoleUI
 4.{3}.
 5.{4}.
 6.{5}.
-7.{6}.",
-"Assign new vehicle for repair (License plate)",
-"View license plates filtered by status (Status to view)",
-"Change vehicle status (License plate)",
-"Inflate wheels in vehicle to max pressure (license plate)",
-"Refule fuel type vehicle (License plate, Fuel type, Liters to add)",
-"Recharge Electric type vehicle (License plate, Minutes to charge)",
-"View vehicle full detailes (License plate)");
+7.{6}.
+8.{7}",
+"Assign new vehicle for repair",
+"View license plates filtered by status",
+"Change vehicle status",
+"Inflate wheels in vehicle to max pressure",
+"Refule fuel type vehicle",
+"Recharge Electric type vehicle",
+"View vehicle full detailes",
+"Exit Garage Services System.");
         }
 
         public void GarageMenu()
@@ -45,6 +47,7 @@ namespace Ex03.ConsoleUI
             {
                 try
                 {
+                    Console.Clear();
                     displayUserOptions();
                     string choice = getAndValidateUserMenuSelection();
 
@@ -83,9 +86,12 @@ namespace Ex03.ConsoleUI
                         case eGarageServicesMenuOptions.ViewVehicleInfo: // Option 7 in menu
                             showGarageEntryData();
                             break;
-
-                        default:
+                        case eGarageServicesMenuOptions.ExitGarageServices:
+                            Console.WriteLine("Thank you for using Garage Services System!");
+                            Environment.Exit(0);
                             break;
+                        default:
+                            throw new ArgumentException("Invalid Menu Option!");                                
                     }
                 }
                 catch(Exception ex)
@@ -247,7 +253,7 @@ namespace Ex03.ConsoleUI
             do
             {
                 validInput = int.TryParse(choice, out userChoiseAsInt);
-                inMenu = (userChoiseAsInt >= (int)eGarageServicesMenuOptions.AssignVehicleToRepair) && userChoiseAsInt <= ((int)eGarageServicesMenuOptions.ViewVehicleInfo);
+                inMenu = (userChoiseAsInt >= (int)eGarageServicesMenuOptions.AssignVehicleToRepair) && userChoiseAsInt <= ((int)eGarageServicesMenuOptions.ExitGarageServices);
             } while (validInput != true || inMenu != true);
 
             return choice;

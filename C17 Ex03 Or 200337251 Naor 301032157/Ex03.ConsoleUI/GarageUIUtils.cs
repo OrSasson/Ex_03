@@ -95,7 +95,7 @@ namespace Ex03.ConsoleUI
 
         internal static string getWheelManufacturerName()
         {
-            return GetStringFromUser("Please enter the Wheel manufactorer name : ");
+            return GetStringFromUser("Please enter the Wheel manufacturer name : ");
         }
 
         internal static string getVehicleOwnerName()
