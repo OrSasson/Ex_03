@@ -14,6 +14,7 @@ namespace Ex03.ConsoleUI
         const int k_CarColorOptionsNumber = 4;
         const int k_CarDoorsOptionsNumber = 4;
         const int k_MotorcycleLicenseOptionsNumber = 4;
+        const int k_FuleTypesOptionsNumber = 4;
         internal const string k_VehicleStatusOptions = @"Please chose the vehicle status:
 1.Vehicle is under repair.
 2.Vehicle is repaired.
@@ -39,6 +40,20 @@ namespace Ex03.ConsoleUI
 2.B1.
 3.AA.
 4.BB.";
+        internal const string k_FuleTypesOptions = @"Please chose the vehicle status:
+1.Soler.
+2.Octan95.
+3.Octan96.
+4.Octan98.";
+
+        internal static string getCarColor()
+        {
+            string fuelTypeStr = string.Empty;
+
+            fuelTypeStr = GetVehicleProperty(k_FuleTypesOptions, k_FuleTypesOptionsNumber);
+
+            return ((eFuelType)Enum.Parse(typeof(eFuelType), fuelTypeStr)).ToString();
+        }
 
         internal static eVehicleStatus getVehicleStatus()
         {
@@ -58,7 +73,6 @@ namespace Ex03.ConsoleUI
             return (eVehicleType)Enum.Parse(typeof(eVehicleType), vehicleTypeStr);
         }
 
-        //string properties
         internal static string GetStringFromUser(string i_RequiredInfo)
         {
             string userStr = string.Empty;

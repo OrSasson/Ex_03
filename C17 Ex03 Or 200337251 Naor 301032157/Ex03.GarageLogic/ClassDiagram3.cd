@@ -54,13 +54,6 @@
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
-    <NestedTypes>
-      <Enum Name="Ex03.GarageLogic.VehicleFactory.eVehicleType" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>VehicleFactory.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>VehicleFactory.cs</FileName>

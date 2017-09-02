@@ -29,13 +29,6 @@ namespace Ex03.GarageLogic
             }
        }
 
-        internal enum eFuelType
-        {
-            Soler,
-            Octan95,
-            Octan96,
-            Octan98
-        }
 
         public override string ToString()
         {
