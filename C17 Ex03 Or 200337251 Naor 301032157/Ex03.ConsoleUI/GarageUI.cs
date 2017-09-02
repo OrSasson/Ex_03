@@ -99,22 +99,32 @@ namespace Ex03.ConsoleUI
         private void showGarageEntryData()
         {
             Vehicle vehicleToShowInfo = null;
+
             string vehicleToShowInfoStr = GarageUIUtils.getVehicleLicenseNumber();
-            GarageServices.tryGetVehicleByLicense(vehicleToShowInfoStr, out vehicleToShowInfo);
-            GarageServices.showGarageEntryData(vehicleToShowInfo);
+
+            if (GarageServices.tryGetVehicleByLicense(vehicleToShowInfoStr, out vehicleToShowInfo))
+            {
+                GarageServices.showGarageEntryData(vehicleToShowInfo);
+            }
+            else
+            {
+                errorFindingVehicle();
+            }
         }
 
         private void rechargeElectricVehicle()
         {
             Vehicle vehicleToRecharge = null;
             string vehicleToRechargeStr = GarageUIUtils.getVehicleLicenseNumber();
-            GarageServices.tryGetVehicleByLicense(vehicleToRechargeStr, out vehicleToRecharge);
-
-            //$Or - Add method.
-            Console.WriteLine("Please enter the amount of energy to charge");
-            float energyToadd = float.Parse(Console.ReadLine());
-           
-            GarageServices.ChargeBattery(vehicleToRechargeStr, energyToadd, vehicleToRecharge);
+            if(GarageServices.tryGetVehicleByLicense(vehicleToRechargeStr, out vehicleToRecharge))
+            {
+                float energyToadd = GarageUIUtils.getBatteryAmountToCharge(vehicleToRecharge);
+                GarageServices.ChargeBattery(vehicleToRechargeStr, energyToadd, vehicleToRecharge);
+            }
+            else
+            {
+                errorFindingVehicle();
+            }
         }
 
         private void refuelCar()
@@ -122,11 +132,11 @@ namespace Ex03.ConsoleUI
             Vehicle vehicleToFuel = null;
             string vehicleToFuelStr = GarageUIUtils.getVehicleLicenseNumber();
             float fuelToadd = float.Parse(Console.ReadLine());
-         //   GarageUIUtils.
+            eFuelType fuelType = GarageUIUtils.getFuelTypeFromUser();
 
             if (GarageServices.tryGetVehicleByLicense(vehicleToFuelStr, out vehicleToFuel))
             {
-           //      GarageServices.AddFuel(vehicleToFuelStr, fuelToadd, i_FuelType 
+                GarageServices.AddFuel(vehicleToFuelStr, fuelToadd, (int)fuelType, vehicleToFuel);
             }
             else
             {

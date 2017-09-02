@@ -40,19 +40,19 @@ namespace Ex03.ConsoleUI
 2.B1.
 3.AA.
 4.BB.";
-        internal const string k_FuleTypesOptions = @"Please chose the vehicle status:
+        internal const string k_FueLTypesOptions = @"Please chose the vehicle status:
 1.Soler.
 2.Octan95.
 3.Octan96.
 4.Octan98.";
 
-        internal static string getCarColor()
+        internal static eFuelType getFuelTypeFromUser()
         {
             string fuelTypeStr = string.Empty;
 
-            fuelTypeStr = GetVehicleProperty(k_FuleTypesOptions, k_FuleTypesOptionsNumber);
+            fuelTypeStr = GetVehicleProperty(k_FueLTypesOptions, k_FuleTypesOptionsNumber);
 
-            return ((eFuelType)Enum.Parse(typeof(eFuelType), fuelTypeStr)).ToString();
+            return ((eFuelType)Enum.Parse(typeof(eFuelType), fuelTypeStr));
         }
 
         internal static eVehicleStatus getVehicleStatus()
@@ -112,6 +112,15 @@ namespace Ex03.ConsoleUI
         {
             //we need to get the max wheel air pressure here
             Console.WriteLine("Enter Vehicle Owner Name");
+            string currentAirPressure = Console.ReadLine();
+
+            return float.Parse(currentAirPressure);
+        }
+
+        internal static float getBatteryAmountToCharge(Vehicle vehicleToCharge)
+        {
+            //we need to get the max wheel air pressure here
+            Console.WriteLine("Enter amount you would like to charge");
             string currentAirPressure = Console.ReadLine();
 
             return float.Parse(currentAirPressure);

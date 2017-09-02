@@ -59,7 +59,7 @@ namespace Ex03.GarageLogic
         {
             Engine vehicleEngineType = i_Vehicle.Engine;
             FuelEngine fuelEngine = vehicleEngineType as FuelEngine;
-            FuelEngine.eFuelType fuelType = (FuelEngine.eFuelType)i_FuelType;
+            eFuelType fuelType = (eFuelType)i_FuelType;
 
             if (fuelEngine.FuelType != fuelType)
             {
