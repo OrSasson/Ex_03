@@ -45,6 +45,8 @@ namespace Ex03.GarageLogic
 
             s_GarageEntries.TryGetValue(i_VehicleToChange, out customerData);
             customerData.VehicleStatus = i_NewVehicleStatus;
+            Console.WriteLine("The status for the vehicle with license number {0} was changed succesfully! Click any Key",i_VehicleToChange.LicenseNumber);
+            Console.ReadKey();
         }
 
         //Menu Option 4 - Inflate Wheels to max.
@@ -111,6 +113,7 @@ namespace Ex03.GarageLogic
             {
                 if (i_licenseNumer == vehicle.LicenseNumber)
                 {
+                    Console.WriteLine("The Vehicle "+ i_licenseNumer + "already Exists!");
                     exists = true;
                     o_Vehicle = vehicle;
                     break;

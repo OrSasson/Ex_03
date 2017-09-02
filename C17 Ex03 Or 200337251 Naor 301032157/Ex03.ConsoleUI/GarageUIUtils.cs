@@ -80,6 +80,7 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("{0}", i_RequiredInfo);
             userStr = Console.ReadLine();
 
+
             return userStr;
         }
 
@@ -90,7 +91,14 @@ namespace Ex03.ConsoleUI
 
         internal static string getVehicleLicenseNumber()
         {
-            return GetStringFromUser("Please enter the vehicle license plate number: ");
+            string licenseNumber = GetStringFromUser("Please enter the vehicle license plate number: ");
+            while (licenseNumber == string.Empty)
+            {
+                Console.WriteLine("License Number cannot be empty!");
+                licenseNumber = GetStringFromUser("Please enter the vehicle license plate number: ");
+            }
+
+            return licenseNumber;
         }
 
         internal static string getWheelManufacturerName()
