@@ -7,7 +7,7 @@ namespace Ex03.GarageLogic
     internal class FuelTruck : Truck
     {
         private const float k_MaxFuelAmount = 130f;
-        private const FuelEngine.eFuelType k_fuelType = FuelEngine.eFuelType.Soler;
+        private const eFuelType k_fuelType = eFuelType.Soler;
 
         public FuelTruck(string i_ModelName, string i_LicenceNumber)
             : base (i_ModelName, i_LicenceNumber)
