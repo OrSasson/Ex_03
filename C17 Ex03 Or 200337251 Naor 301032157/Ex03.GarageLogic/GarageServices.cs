@@ -11,10 +11,10 @@ namespace Ex03.GarageLogic
 
         //Menu Option 1 - Add New Vehicle (chainging status follows).
         // Still need to make sub methods.
-        public static void AddNewGarageEntry(eVehicleType i_VehicleType, string i_ModelName, string i_LicenceNumber, string i_WheelManfucaturerName, string i_OwnerName, string i_OwnerPhoneNum, float i_WheelCurrentAirPressure, Dictionary<string, string> uniqueVehicleProperties)
+        public static void AddNewGarageEntry(eVehicleType i_VehicleType, string i_ModelName, string i_LicenceNumber, string i_WheelManfucaturerName, string i_OwnerName, string i_OwnerPhoneNum, Dictionary<string, string> uniqueVehicleProperties)
         {
             Vehicle vehicleToAdd = VehicleFactory.CreateVehicle((int)i_VehicleType, i_ModelName, i_LicenceNumber);
-            vehicleToAdd.SetWheels(i_WheelManfucaturerName, i_WheelCurrentAirPressure);
+            vehicleToAdd.SetVehicleWheels(i_WheelManfucaturerName);
             vehicleToAdd.InitUniqueVehicleProperties(uniqueVehicleProperties);
 
             CustomerData vehicleCustomerData = new CustomerData(i_OwnerName, i_OwnerPhoneNum);

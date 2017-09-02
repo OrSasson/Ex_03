@@ -69,11 +69,11 @@ namespace Ex03.GarageLogic
             return base.Equals(obj);
         }
 
-        internal void SetWheels(string i_ManufacturerName, float i_CurrentAirPressure)
+        internal void SetVehicleWheels(string i_ManufacturerName)
         {
             for (int i = 0; i < r_NumOfWheels; i++)
             {
-                m_Wheels.Add(new Wheel(i_ManufacturerName, i_CurrentAirPressure, getMaxAirPressure()));
+                m_Wheels.Add(new Wheel(i_ManufacturerName, 0, getMaxAirPressure()));
             }
         }
 

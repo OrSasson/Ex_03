@@ -234,12 +234,12 @@ namespace Ex03.ConsoleUI
                 string wheelManfucaturerName = GarageUIUtils.getWheelManufacturerName();
                 string ownerName = GarageUIUtils.getVehicleOwnerName();
                 string ownerPhoneNum = GarageUIUtils.getVehicleOwnerPhoneNum();
-                float wheelCurrentAirPressure = GarageUIUtils.getCurrentTiersAirPressure();
+            //    float wheelCurrentAirPressure = GarageUIUtils.getCurrentTiersAirPressure();
 
                 try
                 {
                     Dictionary<string, string> uniqueVehicleProperties = GetUniquePropertiesByVehicleType(vehicleType);
-                    GarageServices.AddNewGarageEntry(vehicleType, modelName, licenseNumberFromuser, ownerName, ownerPhoneNum, wheelManfucaturerName, wheelCurrentAirPressure, uniqueVehicleProperties);
+                    GarageServices.AddNewGarageEntry(vehicleType, modelName, licenseNumberFromuser, ownerName, ownerPhoneNum, wheelManfucaturerName, uniqueVehicleProperties);
                 }
                 catch (Exception ex)
                 {
