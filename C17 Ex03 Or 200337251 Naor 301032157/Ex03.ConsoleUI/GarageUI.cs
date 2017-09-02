@@ -137,6 +137,8 @@ namespace Ex03.ConsoleUI
         {
             Vehicle vehicleToFuel = null;
             string vehicleToFuelStr = GarageUIUtils.getVehicleLicenseNumber();
+
+            Console.WriteLine("Please Enter amount of fuel to Add.");
             float fuelToadd = float.Parse(Console.ReadLine());
             eFuelType fuelType = GarageUIUtils.getFuelTypeFromUser();
 
@@ -167,6 +169,8 @@ namespace Ex03.ConsoleUI
         private void errorFindingVehicle()
         {
             Console.WriteLine("Could not find Vehicle!!!");
+            Console.WriteLine("Click any key to run the menu again.");
+            Console.ReadKey();
         }
 
         private void ChangeVehicleStatus()
@@ -180,6 +184,8 @@ namespace Ex03.ConsoleUI
             else
             {
                 errorFindingVehicle();
+              
+                
             }
         }
 
