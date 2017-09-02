@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
-        internal abstract float getMaxAirPressure();
+        protected internal abstract float getMaxAirPressure();
         internal abstract void InitUniqueVehicleProperties(Dictionary<string, string> additionaPropertiesDictionary);
 
         protected readonly string m_ModelName;
@@ -48,6 +48,7 @@ namespace Ex03.GarageLogic
         {
             m_ModelName = i_ModelName;
             r_NumOfWheels = i_NumOfWheels;
+            r_LicenseNumber = i_LicensePlateNum;
             m_Wheels = new List<Wheel>();
         }
 

@@ -40,7 +40,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        internal override float getMaxAirPressure()
+        protected internal override float getMaxAirPressure()
         {
             return k_MaxAirPressure;
         }

@@ -8,24 +8,18 @@ namespace Ex03.GarageLogic
     {
         eCarColor m_CarColor;
         eNumDoorsInCar m_NumOfDoorsInCar;
-        const int k_numOfWheels = 4;
-        const int k_MaxAirPressure = 32;
+        private const int k_numOfWheels = 4;
+        private const int k_MaxAirPressure = 32;
 
-        public Car(string i_ModelName, string i_LicenceNumber)
+        internal Car(string i_ModelName, string i_LicenceNumber)
             : base(i_ModelName, i_LicenceNumber, k_numOfWheels)
         {
-            m_CarColor = eCarColor.Black;
-            m_NumOfDoorsInCar = eNumDoorsInCar.FourDoors;
+            m_CarColor = eCarColor.NotDetermined;
+            m_NumOfDoorsInCar = eNumDoorsInCar.NotDetermined;
         }
-
-        // $ Or - need to create a method for the enum validation.
-        internal override float getMaxAirPressure()
-        {
-            return k_MaxAirPressure;
-        }
-
-        // Need to make this generic, so we won't duplicate code.
-        private void InitUniqueCarProperties(Dictionary<string, string> additionaPropertiesDictionary)
+       
+        // $ OrNeed to make this generic, so we won't duplicate code. maybe pass key as param.
+        private void initUniqueCarProperties(Dictionary<string, string> additionaPropertiesDictionary)
         {
             string carPropertyValue;
 
@@ -35,10 +29,13 @@ namespace Ex03.GarageLogic
             additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyNumOfDoors, out carPropertyValue);
             m_NumOfDoorsInCar = (eNumDoorsInCar)Enum.Parse(typeof(eNumDoorsInCar), carPropertyValue);
         }
-
         internal override void InitUniqueVehicleProperties(Dictionary<string, string> additionaPropertiesDictionary)
         {
-            InitUniqueCarProperties(additionaPropertiesDictionary);
+            initUniqueCarProperties(additionaPropertiesDictionary);
+        }
+       protected internal override float getMaxAirPressure()
+        {
+            return k_MaxAirPressure;
         }
 
     }

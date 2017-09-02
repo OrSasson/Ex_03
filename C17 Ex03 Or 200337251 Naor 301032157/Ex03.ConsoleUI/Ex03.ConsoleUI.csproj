@@ -32,10 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ConsoleUI.cs" />
+    <Compile Include="GarageUI.cs" />
     <Compile Include="eFilterStatusOptions.cs" />
     <Compile Include="eGarageSystemServices.cs" />
     <Compile Include="FloatParcer.cs" />
+    <Compile Include="GarageUIUtils.cs" />
     <Compile Include="IntParcer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="PropertyParcer.cs" />

@@ -13,11 +13,5 @@ namespace Ex03.GarageLogic
         {
             Engine = new FuelEngine(FuelEngine.eFuelType.Soler, k_MaxFuelAmount);
         }
-
-        public override void InitUniqueVehicleProperties()
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }
