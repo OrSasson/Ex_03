@@ -102,11 +102,11 @@ namespace Ex03.ConsoleUI
 
         internal static string getVehicleLicenseNumber()
         {
-            string licenseNumber = GetStringFromUser("Please enter the vehicle license plate number: ");
+            string licenseNumber = GetStringFromUser(k_InputLicensePlate);
             while (licenseNumber == string.Empty)
             {
-                Console.WriteLine("License Number cannot be empty!");
-                licenseNumber = GetStringFromUser("Please enter the vehicle license plate number: ");
+                Console.WriteLine(k_LincesCannotBeEmpty);
+                licenseNumber = GetStringFromUser(k_InputLicensePlate);
             }
 
             return licenseNumber;
@@ -124,16 +124,16 @@ namespace Ex03.ConsoleUI
 
         internal static string getVehicleOwnerPhoneNum()
         {
-            return GetStringFromUser("Please enter the vehicle owner phone number : ");
+            return GetStringFromUser(k_EnterVehicleOwnerPhoneNumber);
         }
 
-        internal static float getBatteryAmountToCharge(Vehicle vehicleToCharge)
+        internal static float getBatteryAmountToCharge(Vehicle i_vehicleToCharge)
         {
             //we need to get the max wheel air pressure here
-            Console.WriteLine("Enter amount you would like to charge");
-            string currentAirPressure = Console.ReadLine();
+            Console.WriteLine(k_EnterAmountToAddFuel);
+            string amountToChargeStr = Console.ReadLine();
 
-            return float.Parse(currentAirPressure);
+            return float.Parse(amountToChargeStr);
         }
 
         //Car uninque properties
@@ -172,7 +172,7 @@ namespace Ex03.ConsoleUI
             int engineVolume;
             string engineVolumeStr;
 
-            m_IntValidator.GetPropertyValueFromUser("Please enter the Motorcycle engine volume : ", out engineVolume);
+            m_IntValidator.GetPropertyValueFromUser(k_EnterMotorcycleEngineVolume, out engineVolume);
             engineVolumeStr = engineVolume.ToString();
 
             return engineVolumeStr;
@@ -186,7 +186,7 @@ namespace Ex03.ConsoleUI
 
             do
             {
-                Console.WriteLine("Does the Truck contains Hazardous Materials ? (Y/N)");
+                Console.WriteLine(k_EnterHazardousMaterialExistence);
                 doesContainsStr = Console.ReadLine();
             }
             while (doesContainsStr != "Y" && doesContainsStr != "y" && doesContainsStr != "N" && doesContainsStr != "n");
@@ -208,7 +208,7 @@ namespace Ex03.ConsoleUI
             float maxWeight;
             string maxWeightStr = string.Empty;
 
-            m_FloatValidator.TryParse("Please enter the truck's Maximum loading weight:", out maxWeight);
+            m_FloatValidator.TryParse(k_EnterMaxiumLoadingWeight, out maxWeight);
             maxWeightStr = maxWeight.ToString();
 
             return maxWeightStr;
