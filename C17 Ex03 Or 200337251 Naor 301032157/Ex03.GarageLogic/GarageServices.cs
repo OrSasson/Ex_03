@@ -55,39 +55,28 @@ namespace Ex03.GarageLogic
 
         //Menu Option 5 - Add Fuel to a Vehicle that runs on Fuel.
         // Needs Refactoring, less params and reuse code in method.
-        public static void AddFuel(string i_LicenceNumber, float i_EnergyToAdd, int i_FuelType, Vehicle i_VehicleToAddFuel)
+        public static void AddFuel(string i_LicenceNumber, float i_EnergyToAdd, int i_FuelType, Vehicle i_Vehicle)
         {
+            Engine vehicleEngineType = i_Vehicle.Engine;
+            FuelEngine fuelEngine = vehicleEngineType as FuelEngine;
             FuelEngine.eFuelType fuelType = (FuelEngine.eFuelType)i_FuelType;
-            FuelEngine fuelEngine = i_VehicleToAddFuel.Engine as FuelEngine;
 
             if (fuelEngine.FuelType != fuelType)
             {
-                throw new ArgumentException("Wrong Fuel Type! This vehicle runs on " + fuelEngine.FuelType);
-            }
-
-            if (i_VehicleToAddFuel.Engine is FuelEngine)
-            {
-                i_VehicleToAddFuel.Engine.AddEnergyToVehicle(i_EnergyToAdd);
+                throw new ArgumentException(string.Format("Invalid Fuel Type! This vehicle runs on {0}", fuelEngine.FuelType));
             }
             else
             {
-                throw new ArgumentException("Wrong Engine Type!");
+                (vehicleEngineType as FuelEngine).AddEnergyToVehicle(i_EnergyToAdd);
             }
-
         }
 
         //Menu Option 6 - Add Fuel to a Vehicle that runs on Fuel.
         // Needs Refactoring, less params and reuse code in method.
-        public static void RechargeVehicleBattery(string i_LicenceNumber, float i_EnergyToAdd, Vehicle i_VehicleToCharge)
+        public static void ChargeBattery(string i_LicenceNumber, float i_EnergyToAdd, Vehicle i_Vehicle)
         {
-            if(i_VehicleToCharge.Engine is ElectricEngine)
-            {
-                i_VehicleToCharge.Engine.AddEnergyToVehicle(i_EnergyToAdd);
-            }
-            else
-            {
-                throw new ArgumentException("Wrong Engine Type!");
-            }
+            Engine vehicleEngineType = i_Vehicle.Engine;
+            (vehicleEngineType as ElectricEngine).AddEnergyToVehicle(i_EnergyToAdd);
         }
 
         //Menu Option 7 - Display Full statistics of the Garage entry.

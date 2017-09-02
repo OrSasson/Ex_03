@@ -7,14 +7,23 @@ namespace Ex03.ConsoleUI
 {
     internal class GarageUIUtils
     {
-        private static PropertyParcer<int> m_IntParcer = new IntParcer();
-        private static PropertyParcer<float> m_FloatParcer = new FloatParcer();
+        private static PropertyValidator<int> m_IntValidator = new IntValidator();
+        private static PropertyValidator<float> m_FloatValidator = new FloatValidator();
+        const string k_VehicleStatusOptions = @"Please chose the vehicle status:
+1.Vehicle is under repair.
+2.Vehicle is repaired.
+3.Paid.";
         const string k_VehicleTypeOptions = @"Please chose the vehicle type: 
 1.FuelCar.
 2.ElectricCar.
 3.FuelMotorcycle.
 4.ElectricMotorcycle.
 5.FuelTruck.";
+        const string k_CarColorOptions = @"Please chose the vehicle color : 
+1.Green.
+2.Silver.
+3.White.
+4.Black.";
         const string k_CarDoorsOptions = @"Please chose the number of doors in customer's car:
 1.Two doors.
 2.Three doors.
@@ -26,95 +35,118 @@ namespace Ex03.ConsoleUI
 3.AA.
 4.BB.";
 
-        internal static eVehicleType GetVehicleType()
-        {
-            string vehicleTypeStr = GetStringFromUser(k_VehicleTypeOptions);
-
-            return (eVehicleType)Enum.Parse(typeof(eVehicleType), vehicleTypeStr);
-        }
-        
-        internal static string getVehicleModelName()
-        {
-            Console.WriteLine("Enter Model Name");
-
-            return Console.ReadLine();
-        }
-        
-        internal static string getVehicleLicenseNumber()
-        {
-            Console.WriteLine("Enter License Number");
-
-            return Console.ReadLine();
-        }
-        
-        internal static string getWheelManufacturerName()
-        {
-            Console.WriteLine("Enter Wheels Manufacturer Name");
-
-            return Console.ReadLine();
-        }
-        
-        internal static string getVehicleOwnerName()
-        {
-            Console.WriteLine("Enter vehicle owner Name");
-
-            return Console.ReadLine();
-        }
-        
-        internal static string getVehicleOwnerPhoneNum()
-        {
-            Console.WriteLine("Enter vehicle owner phoneName");
-
-            return Console.ReadLine();
-        }
-
-        internal static float getCurrentTiersAirPressure()
-        {
-            string currentAirPressure = Console.ReadLine();
-            Console.WriteLine("Enter Vehicle Owner Name");
-
-            return float.Parse(currentAirPressure);
-        }
-
         internal static eVehicleStatus getVehicleStatus()
         {
-            string vehicleStatusStr = Console.ReadLine();
+            string vehicleStatusStr = string.Empty;
+            int vehicleStatus;
+
+            vehicleStatus = m_IntValidator.GetVehicleProperty(k_VehicleStatusOptions, out vehicleStatus);
+            vehicleStatusStr = vehicleStatus.ToString();
 
             return (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), vehicleStatusStr);
         }
 
-        internal static int GetVehicleProperty(string i_UserOptionsSet)
+        internal static eVehicleType GetVehicleType()
         {
-            //this are the required strings
+            string vehicleTypeStr = String.Empty;
+            int vehicleType;
 
-            //doors options string 
-            //      @"Please chose the number of doors in customer's car:
-            //1.Two doors
-            //2.Three doors
-            //3.Four doors
-            //4.Five doors"
+            vehicleType = m_IntValidator.GetVehicleProperty(k_VehicleTypeOptions, out vehicleType);
+            vehicleTypeStr = vehicleType.ToString();
 
-            //vehicle type string
-            //      @"Please chose the vehicle type: 
-            //1.FuelCar
-            //2.ElectricCar
-            //3.FuelMotorcycle
-            //4.ElectricMotorcycle
-            //5.FuelTruck."
-
-            //Motorcycle license type string
-            //      @"Please chose the motorcycle license type:
-            //1.A1
-            //2.B1
-            //3.AA
-            //4.BB"
-            int userProperyValue;
-
-            m_IntParcer.GetVehicleProperty(i_UserOptionsSet, out userProperyValue);
-
-            return userProperyValue;
+            return (eVehicleType)Enum.Parse(typeof(eVehicleType), vehicleTypeStr);
         }
 
+        //string properties
+        internal static string GetStringFromUser(string i_RequiredInfo)
+        {
+            string userStr = string.Empty;
+
+            Console.WriteLine("{0}", i_RequiredInfo);
+            userStr = Console.ReadLine();
+
+            return userStr;
+        }
+
+        internal static string getVehicleModelName()
+        {
+            return GetStringFromUser("Please enter the vehicle's model name : ");
+        }
+
+        internal static string getVehicleLicenseNumber()
+        {
+            return GetStringFromUser("Please enter the vehicle license plate number: ");
+        }
+
+        internal static string getWheelManufacturerName()
+        {
+            return GetStringFromUser("Please enter the Wheel manufactorer name : ");
+        }
+
+        internal static string getVehicleOwnerName()
+        {
+            return GetStringFromUser("Please enter the vehicle owner name : ");
+        }
+
+        internal static string getVehicleOwnerPhoneNum()
+        {
+            return GetStringFromUser("Please enter the vehicle owner phone number : ");
+        }
+
+        internal static float getCurrentTiersAirPressure()
+        {
+            //we need to get the max wheel air pressure here
+            Console.WriteLine("Enter Vehicle Owner Name");
+            string currentAirPressure = Console.ReadLine();
+
+            return float.Parse(currentAirPressure);
+        }
+
+        //Car uninque properties
+        internal static eNumDoorsInCar getNumberOfDoorsInCar()
+        {
+            string doorsNumStr = string.Empty;
+            int doorsNum;
+
+            doorsNum = m_IntValidator.GetVehicleProperty(k_CarDoorsOptions, out doorsNum);
+            doorsNumStr = doorsNum.ToString();
+
+            return (eNumDoorsInCar)Enum.Parse(typeof(eNumDoorsInCar), doorsNumStr);
+        }
+
+        internal static eCarColor getCarColor()
+        {
+            string carColorStr = string.Empty;
+            int carColor;
+
+            carColor = m_IntValidator.GetVehicleProperty(k_CarColorOptions, out carColor);
+            carColorStr = carColor.ToString();
+
+            return (eCarColor)Enum.Parse(typeof(eCarColor), carColorStr);
+        }
+
+        //Motorcycle unique properties
+        internal static eMotorcycleLicenseType getMotorcycleLicenseType(Type i_Type)
+        {
+            string licenseType = string.Empty;
+            int doorsNum;
+
+            doorsNum = m_IntValidator.GetVehicleProperty(k_MotorcycleLicenseOptions, out doorsNum);
+            licenseType = doorsNum.ToString();
+
+            return (eMotorcycleLicenseType)Enum.Parse(typeof(eMotorcycleLicenseType), licenseType);
+        }
+
+        internal static int getMotorcycleEngineVolume()
+        {
+            int engineVolume;
+
+            engineVolume = GetVehicleProperty("Please enter the Motorcycle engine volume : ");
+
+            return engineVolume;
+        }
+
+        //Truck uninque properties
         internal static bool DoesContainsHazardousMaterials()
         {
             string doesContainsStr = string.Empty;
@@ -143,23 +175,19 @@ namespace Ex03.ConsoleUI
         {
             float maxWeight;
 
-            m_FloatParcer.TryParce("Please enter the truck's Maximum loading weight:", out maxWeight);
+            m_FloatValidator.TryParse("Please enter the truck's Maximum loading weight:", out maxWeight);
 
             return maxWeight;
         }
 
-        public static string GetStringFromUser(string i_RequiredInfo)
+        //check if this method is unnecessary
+        internal static int GetVehicleProperty(string i_UserOptionsSet)
         {
-            //1.vehicle model name string
-            //2.vehicle owner name string
-            //3.owner phone number string
-            //4.wheel manufactorer string
-            string userStr = string.Empty;
+            int userProperyValue;
 
-            Console.WriteLine("Please enter the {0}: ", i_RequiredInfo);
-            userStr = Console.ReadLine();
+            m_IntValidator.GetVehicleProperty(i_UserOptionsSet, out userProperyValue);
 
-            return userStr;
+            return userProperyValue;
         }
     }
 }
