@@ -10,7 +10,7 @@ namespace Ex03.ConsoleUI
         
         public GarageUI()
         {
-            //loadGarageSystem(); // Load?
+            runGarageServicesSystem();
         }
 
         private static void displayUserOptions()
@@ -35,11 +35,11 @@ namespace Ex03.ConsoleUI
         public void GarageMenu()
         {
            
-            loadGarageSystem();
+            runGarageServicesSystem();
 
         }
 
-        private void loadGarageSystem()
+        private void runGarageServicesSystem()
         {
             while (true)
             {
