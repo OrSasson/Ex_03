@@ -10,7 +10,6 @@ namespace Ex03.ConsoleUI
         
         public GarageUI()
         {
-            
             //loadGarageSystem(); // Load?
         }
 
@@ -158,16 +157,16 @@ namespace Ex03.ConsoleUI
             switch (vehicleType)
             {
                 case eVehicleType.Car:
-                    uniqueVehicleProperties.Add(GarageConstants.k_KeyColor, GarageUIUtils.GetStringFromUser(Console.ReadLine()));
-                    uniqueVehicleProperties.Add(GarageConstants.k_KeyNumOfDoors, GarageUIUtils.GetStringFromUser(Console.ReadLine()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyColor, GarageUIUtils.GetStringFromUser(GarageUIUtils.getCarColor()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyNumOfDoors, GarageUIUtils.GetStringFromUser(GarageUIUtils.getNumberOfDoorsInCar()));
                     break;
                 case eVehicleType.Motorcycle:
-                    uniqueVehicleProperties.Add(GarageConstants.k_KeyEngineVolume, GarageUIUtils.GetStringFromUser(Console.ReadLine()));
-                    uniqueVehicleProperties.Add(GarageConstants.k_KeyLicenseType, GarageUIUtils.GetStringFromUser(Console.ReadLine()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyEngineVolume, GarageUIUtils.getMotorcycleEngineVolume());
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyLicenseType, GarageUIUtils.getMotorcycleLicenseType());
                     break;
                 case eVehicleType.Truck:
-                    uniqueVehicleProperties.Add(GarageConstants.k_CarryigHazardousMaterial, GarageUIUtils.GetStringFromUser(Console.ReadLine()));
-                    uniqueVehicleProperties.Add(GarageConstants.k_MaxLoadingWeight, GarageUIUtils.GetStringFromUser(Console.ReadLine()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_CarryigHazardousMaterial, GarageUIUtils.DoesContainsHazardousMaterials());
+                    uniqueVehicleProperties.Add(GarageConstants.k_MaxLoadingWeight, GarageUIUtils.GetTruckMaxLoadingWeight());
                     break;
             }
 

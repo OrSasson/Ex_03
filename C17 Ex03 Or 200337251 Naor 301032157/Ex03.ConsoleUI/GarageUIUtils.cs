@@ -9,27 +9,32 @@ namespace Ex03.ConsoleUI
     {
         private static PropertyValidator<int> m_IntValidator = new IntValidator();
         private static PropertyValidator<float> m_FloatValidator = new FloatValidator();
-        const string k_VehicleStatusOptions = @"Please chose the vehicle status:
+        const int k_VehicleStatusOptionsNumber = 3;
+        const int k_VehicleTypeOptionsNumber = 5;
+        const int k_CarColorOptionsNumber = 4;
+        const int k_CarDoorsOptionsNumber = 4;
+        const int k_MotorcycleLicenseOptionsNumber = 4;
+        internal const string k_VehicleStatusOptions = @"Please chose the vehicle status:
 1.Vehicle is under repair.
 2.Vehicle is repaired.
 3.Paid.";
-        const string k_VehicleTypeOptions = @"Please chose the vehicle type: 
+        internal const string k_VehicleTypeOptions = @"Please chose the vehicle type: 
 1.FuelCar.
 2.ElectricCar.
 3.FuelMotorcycle.
 4.ElectricMotorcycle.
 5.FuelTruck.";
-        const string k_CarColorOptions = @"Please chose the vehicle color : 
+        internal const string k_CarColorOptions = @"Please chose the vehicle color : 
 1.Green.
 2.Silver.
 3.White.
 4.Black.";
-        const string k_CarDoorsOptions = @"Please chose the number of doors in customer's car:
+        internal const string k_CarDoorsOptions = @"Please chose the number of doors in customer's car:
 1.Two doors.
 2.Three doors.
 3.Four doors.
 4.Five doors.";
-        const string k_MotorcycleLicenseOptions = @"Please chose the motorcycle license type:
+        internal const string k_MotorcycleLicenseOptions = @"Please chose the motorcycle license type:
 1.A1.
 2.B1.
 3.AA.
@@ -38,10 +43,8 @@ namespace Ex03.ConsoleUI
         internal static eVehicleStatus getVehicleStatus()
         {
             string vehicleStatusStr = string.Empty;
-            int vehicleStatus;
 
-            vehicleStatus = m_IntValidator.GetVehicleProperty(k_VehicleStatusOptions, out vehicleStatus);
-            vehicleStatusStr = vehicleStatus.ToString();
+            vehicleStatusStr = GetVehicleProperty(k_VehicleStatusOptions, k_VehicleStatusOptionsNumber);
 
             return (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), vehicleStatusStr);
         }
@@ -49,10 +52,8 @@ namespace Ex03.ConsoleUI
         internal static eVehicleType GetVehicleType()
         {
             string vehicleTypeStr = String.Empty;
-            int vehicleType;
 
-            vehicleType = m_IntValidator.GetVehicleProperty(k_VehicleTypeOptions, out vehicleType);
-            vehicleTypeStr = vehicleType.ToString();
+            vehicleTypeStr = GetVehicleProperty(k_VehicleTypeOptions, k_VehicleTypeOptionsNumber);
 
             return (eVehicleType)Enum.Parse(typeof(eVehicleType), vehicleTypeStr);
         }
@@ -103,51 +104,49 @@ namespace Ex03.ConsoleUI
         }
 
         //Car uninque properties
-        internal static eNumDoorsInCar getNumberOfDoorsInCar()
+        internal static string getNumberOfDoorsInCar()
         {
             string doorsNumStr = string.Empty;
             int doorsNum;
 
-            doorsNum = m_IntValidator.GetVehicleProperty(k_CarDoorsOptions, out doorsNum);
+            doorsNum = m_IntValidator.GetPropertyValueFromUser(k_CarDoorsOptions, out doorsNum);
             doorsNumStr = doorsNum.ToString();
 
-            return (eNumDoorsInCar)Enum.Parse(typeof(eNumDoorsInCar), doorsNumStr);
+            return ((eNumDoorsInCar)Enum.Parse(typeof(eNumDoorsInCar), doorsNumStr)).ToString();
         }
 
-        internal static eCarColor getCarColor()
+        internal static string getCarColor()
         {
             string carColorStr = string.Empty;
-            int carColor;
 
-            carColor = m_IntValidator.GetVehicleProperty(k_CarColorOptions, out carColor);
-            carColorStr = carColor.ToString();
+            carColorStr = GetVehicleProperty(k_CarColorOptions, k_CarColorOptionsNumber);
 
-            return (eCarColor)Enum.Parse(typeof(eCarColor), carColorStr);
+            return ((eCarColor)Enum.Parse(typeof(eCarColor), carColorStr)).ToString();
         }
 
         //Motorcycle unique properties
-        internal static eMotorcylceLicenseType getMotorcycleLicenseType(Type i_Type)
+        internal static string getMotorcycleLicenseType()
         {
-            string licenseType = string.Empty;
-            int doorsNum;
+            string licenseTypeStr = string.Empty;
 
-            doorsNum = m_IntValidator.GetVehicleProperty(k_MotorcycleLicenseOptions, out doorsNum);
-            licenseType = doorsNum.ToString();
+            licenseTypeStr = GetVehicleProperty(k_MotorcycleLicenseOptions, k_MotorcycleLicenseOptionsNumber);
 
-            return (eMotorcylceLicenseType)Enum.Parse(typeof(eMotorcylceLicenseType), licenseType);
+            return ((eMotorcylceLicenseType)Enum.Parse(typeof(eMotorcylceLicenseType), licenseTypeStr)).ToString();
         }
 
-        internal static int getMotorcycleEngineVolume()
+        internal static string getMotorcycleEngineVolume()
         {
             int engineVolume;
+            string engineVolumeStr;
 
-            engineVolume = GetVehicleProperty("Please enter the Motorcycle engine volume : ");
+            m_IntValidator.GetPropertyValueFromUser("Please enter the Motorcycle engine volume : ", out engineVolume);
+            engineVolumeStr = engineVolume.ToString();
 
-            return engineVolume;
+            return engineVolumeStr;
         }
 
         //Truck uninque properties
-        internal static bool DoesContainsHazardousMaterials()
+        internal static string DoesContainsHazardousMaterials()
         {
             string doesContainsStr = string.Empty;
             bool doesContainsHazardousMaterials;
@@ -168,26 +167,34 @@ namespace Ex03.ConsoleUI
                 doesContainsHazardousMaterials = false;
             }
 
-            return doesContainsHazardousMaterials;
+            return doesContainsHazardousMaterials.ToString();
         }
 
-        internal static float GetTruckMaxLoadingWeight()
+        internal static string GetTruckMaxLoadingWeight()
         {
             float maxWeight;
+            string maxWeightStr = string.Empty;
 
             m_FloatValidator.TryParse("Please enter the truck's Maximum loading weight:", out maxWeight);
+            maxWeightStr = maxWeight.ToString();
 
-            return maxWeight;
+            return maxWeightStr;
         }
 
         //check if this method is unnecessary
-        internal static int GetVehicleProperty(string i_UserOptionsSet)
+        internal static string GetVehicleProperty(string i_UserOptionsSet, int i_UserOptionsNumber)
         {
-            int userProperyValue;
+            int userPropertyValue;
+            string userPropertyStr = string.Empty;
 
-            m_IntValidator.GetVehicleProperty(i_UserOptionsSet, out userProperyValue);
+            do
+            {
+                m_IntValidator.GetPropertyValueFromUser(i_UserOptionsSet, out userPropertyValue);
+                userPropertyStr = userPropertyValue.ToString();
 
-            return userProperyValue;
+            } while (userPropertyValue < 1 || userPropertyValue > i_UserOptionsNumber);
+
+            return userPropertyStr;
         }
     }
 }

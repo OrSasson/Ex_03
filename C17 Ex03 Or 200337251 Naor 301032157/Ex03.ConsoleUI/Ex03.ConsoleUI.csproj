@@ -34,8 +34,7 @@
   <ItemGroup>
     <Compile Include="FloatValidator.cs" />
     <Compile Include="GarageUI.cs" />
-    <Compile Include="eFilterStatusOptions.cs" />
-    <Compile Include="eGarageSystemServices.cs" />
+    <Compile Include="eGarageServicesMenuOptions.cs" />
     <Compile Include="GarageUIUtils.cs" />
     <Compile Include="IntValidator.cs" />
     <Compile Include="Program.cs" />
