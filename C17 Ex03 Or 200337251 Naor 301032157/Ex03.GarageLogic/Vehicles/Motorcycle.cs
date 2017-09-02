@@ -18,12 +18,18 @@ namespace Ex03.GarageLogic
         private void initUniqueMotorcycleProperties(Dictionary<string, string> additionaPropertiesDictionary)
         {
             string MotoryclePropertyValue;
-            
-            additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyLicenseType, out MotoryclePropertyValue);
+            bool wasValueRetrieved = true;
+
+            wasValueRetrieved = additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyLicenseType, out MotoryclePropertyValue);
             m_LicenseType = (eMotorcylceLicenseType)Enum.Parse(typeof(eMotorcylceLicenseType), MotoryclePropertyValue);
 
-            additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyEngineVolume, out MotoryclePropertyValue);
+            wasValueRetrieved = wasValueRetrieved && additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyEngineVolume, out MotoryclePropertyValue);
             m_EngineVolume = int.Parse(MotoryclePropertyValue);
+
+            if (wasValueRetrieved != true)
+            {
+                throw new Exception("One or more of the properties was not found");
+            }
         }
 
         internal override void InitUniqueVehicleProperties(Dictionary<string, string> additionaPropertiesDictionary)

@@ -15,11 +15,6 @@ namespace Ex03.GarageLogic
             r_FuelType = i_FuelType;
         }
 
-        static FuelEngine()
-        {
-           
-        }
-
         internal static string GetSupportedFuelTypes()
         {
             return string.Join(",", Enum.GetNames(typeof(eFuelType)));
@@ -28,11 +23,11 @@ namespace Ex03.GarageLogic
 
        internal eFuelType FuelType
        {
-            get { return r_FuelType; }
+            get
+            {
+                return r_FuelType;
+            }
        }
-        // $Or - Should move this up to engine, then concatentate fuel type in fuel engine. no override in electircal engine.
-        // right now - Duplicate code.
- 
 
         internal enum eFuelType
         {

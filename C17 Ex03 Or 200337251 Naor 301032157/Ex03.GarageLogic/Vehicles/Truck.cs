@@ -46,14 +46,21 @@ namespace Ex03.GarageLogic
         }
 
         private void InitUniqueTruckProperties(Dictionary<string, string> i_AdditionaPropertiesDictionary)
-        {
+        {// throwing an exception if for some reason the property value is not present in the dictionary. The parse methods of the value types throw the format/null exceptions.
+            
             string truckPropertyValue;
+            bool wasValueRetrieved = true;
 
-            i_AdditionaPropertiesDictionary.TryGetValue(GarageConstants.k_MaxLoadingWeight, out truckPropertyValue);
+            wasValueRetrieved = i_AdditionaPropertiesDictionary.TryGetValue(GarageConstants.k_MaxLoadingWeight, out truckPropertyValue);
             m_MaxLoadingWeight = float.Parse(truckPropertyValue);
-
-            i_AdditionaPropertiesDictionary.TryGetValue(GarageConstants.k_CarryigHazardousMaterial, out truckPropertyValue);
+            
+            wasValueRetrieved = wasValueRetrieved && i_AdditionaPropertiesDictionary.TryGetValue(GarageConstants.k_CarryigHazardousMaterial, out truckPropertyValue);
             m_CarryigHazardousMaterial = bool.Parse(truckPropertyValue);
+
+            if(wasValueRetrieved != true)
+            {
+                throw new Exception("One or more of the properties was not found");
+            }
         }
 
         internal override void InitUniqueVehicleProperties(Dictionary<string, string> i_AdditionaPropertiesDictionary)

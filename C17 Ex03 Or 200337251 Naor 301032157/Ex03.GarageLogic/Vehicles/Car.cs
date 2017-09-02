@@ -18,16 +18,21 @@ namespace Ex03.GarageLogic
             m_NumOfDoorsInCar = eNumDoorsInCar.NotDetermined;
         }
 
-        // $ OrNeed to make this generic, so we won't duplicate code. maybe pass key as param.
         private void initUniqueCarProperties(Dictionary<string, string> additionaPropertiesDictionary)
         {
             string carPropertyValue;
+            bool wasValueRetrieved = true;
 
-            additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyColor, out carPropertyValue);
+            wasValueRetrieved = additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyColor, out carPropertyValue);
             m_CarColor = (eCarColor)Enum.Parse(typeof(eCarColor), carPropertyValue);
 
-            additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyNumOfDoors, out carPropertyValue);
+            wasValueRetrieved = wasValueRetrieved && additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyNumOfDoors, out carPropertyValue);
             m_NumOfDoorsInCar = (eNumDoorsInCar)Enum.Parse(typeof(eNumDoorsInCar), carPropertyValue);
+
+            if (wasValueRetrieved != true)
+            {
+                throw new Exception("One or more of the properties was not found");
+            }
         }
 
         internal override void InitUniqueVehicleProperties(Dictionary<string, string> additionaPropertiesDictionary)

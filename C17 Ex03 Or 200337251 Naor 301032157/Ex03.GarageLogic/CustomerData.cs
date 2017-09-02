@@ -4,7 +4,7 @@
     internal class CustomerData
     {
         readonly string m_CustomerName;
-        readonly string m_CustomerPhoneNumber;
+        private string m_CustomerPhoneNumber;
         eVehicleStatus m_VehicleStatus;
 
         internal CustomerData(string i_CustomerName, string i_CustomerPhoneNumber)
@@ -23,6 +23,20 @@
             {
                 // $Or - Throw exception not the right enum...
                 m_VehicleStatus = value;
+            }
+        }
+        public string CustomerPhoneNumber
+        {
+            get
+            {
+                return m_CustomerPhoneNumber;
+            }
+            set
+            {
+                // using int.parse here to get 3 exception types in the price of 1 - overflow, null, format.
+                //Catching it is the UI responsibility. 
+                int.Parse(value); 
+                m_CustomerPhoneNumber = value;
             }
         }
 

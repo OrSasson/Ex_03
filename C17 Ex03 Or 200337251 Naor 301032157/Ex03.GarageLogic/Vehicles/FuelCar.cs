@@ -8,11 +8,13 @@ namespace Ex03.GarageLogic
     internal class FuelCar : Car
     {
         private const float k_MaxFuelAmount = 50f;
-     
+        private const FuelEngine.eFuelType k_fuelType =  FuelEngine.eFuelType.Octan98;
+
+
         internal FuelCar(string i_ModelName, string i_LicenceNumber)
             : base( i_ModelName, i_LicenceNumber)
         {
-            Engine = new FuelEngine(FuelEngine.eFuelType.Octan98, k_MaxFuelAmount);
+            Engine = new FuelEngine(k_fuelType, k_MaxFuelAmount);
         }
     }
     

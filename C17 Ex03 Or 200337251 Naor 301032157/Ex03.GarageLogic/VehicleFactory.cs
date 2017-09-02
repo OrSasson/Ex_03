@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     internal static class VehicleFactory
     {
-        //$ Getting all the read only fields the belong to vehicle.
+        // Getting all the read only fields the belong to vehicle.
         public static Vehicle CreateVehicle(int i_VehicleType, string i_ModelName, string i_LicenceNumber)
         {
             Vehicle newVehicle = null;
@@ -36,7 +36,7 @@ namespace Ex03.GarageLogic
             }
             catch
             {
-                throw new ArgumentException("No matching Vehicle Found!!");
+                throw new ArgumentException("No matching vehicle was found!!");
             }
 
             return newVehicle;
