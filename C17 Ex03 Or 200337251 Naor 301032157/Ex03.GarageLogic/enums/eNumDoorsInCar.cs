@@ -1,7 +1,6 @@
 ﻿namespace Ex03.GarageLogic
 {
-    // $Ask Guy - This enum is very specific to this class. Could it reside here?
-    internal enum eNumDoorsInCar
+    public enum eNumDoorsInCar
     {
         NotDetermined = -1,
         TwoDoors = 2,

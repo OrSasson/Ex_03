@@ -43,11 +43,11 @@ namespace Ex03.ConsoleUI
         private void loadGarageSystem()
         {
             string choice = Console.ReadLine();
-            eGarageSystemServices GarageSystemService = eGarageSystemServices.NoSelection;
+            eGarageServicesMenuOptions GarageSystemService = eGarageServicesMenuOptions.NoSelection;
 
             try
             {
-                GarageSystemService = (eGarageSystemServices)Enum.Parse(typeof(eGarageSystemServices), choice);
+                GarageSystemService = (eGarageServicesMenuOptions)Enum.Parse(typeof(eGarageServicesMenuOptions), choice);
             }
             catch (Exception)
             {
@@ -60,7 +60,7 @@ namespace Ex03.ConsoleUI
 
             switch (GarageSystemService)
             {
-                case eGarageSystemServices.AssignVehicleToRepair: // Option 1 in menu
+                case eGarageServicesMenuOptions.AssignVehicleToRepair: // Option 1 in menu
 
                     Vehicle vehicleToAdd = null;
 
@@ -91,7 +91,7 @@ namespace Ex03.ConsoleUI
                     }
                     break;
 
-                case eGarageSystemServices.ViewVehiclesPlateNumbersByStatus: // Option 2 in menu
+                case eGarageServicesMenuOptions.ViewVehiclesPlateNumbersByStatus: // Option 2 in menu
                     bool v_includeFilter = true;
                     eVehicleStatus vehicleStatus = eVehicleStatus.NotDetermined;
 
@@ -101,7 +101,7 @@ namespace Ex03.ConsoleUI
                     //GarageServices.GetVehiclesListInGarage(vehicleStatus, !v_includeFilter);
                     break;
 
-                case eGarageSystemServices.ChangeVehicleStatus: // Option 3 in menu
+                case eGarageServicesMenuOptions.ChangeVehicleStatus: // Option 3 in menu
                     Vehicle vehicleToChangeStatus = null;
                     eVehicleStatus newVehicleStatus = GarageUIUtils.getVehicleStatus();
                     if (GarageServices.tryGetVehicleByLicense(GarageUIUtils.getVehicleLicenseNumber(), out vehicleToChangeStatus))
@@ -110,13 +110,13 @@ namespace Ex03.ConsoleUI
                     }
                     break;
 
-                case eGarageSystemServices.InflateVehicleWheelsToMax: // Option 4 in menu
+                case eGarageServicesMenuOptions.InflateVehicleWheelsToMax: // Option 4 in menu
                     Vehicle vehicleToInflateWheels = null;
                     string vehicleToInflateLicenseNumStr = GarageUIUtils.getVehicleLicenseNumber();
                     GarageServices.tryGetVehicleByLicense(vehicleToInflateLicenseNumStr, out vehicleToInflateWheels);
                     break;
 
-                case eGarageSystemServices.RefuelFuelBasedVehicle: // Option 5 in menu
+                case eGarageServicesMenuOptions.RefuelFuelBasedVehicle: // Option 5 in menu
                     Vehicle vehicleToFuel = null;
                     string vehicleToFuelStr = GarageUIUtils.getVehicleLicenseNumber();
                     float fuelToadd = float.Parse(Console.ReadLine());
@@ -131,7 +131,7 @@ namespace Ex03.ConsoleUI
                     }
                     break;
 
-                case eGarageSystemServices.RechargeElectricBasedVehicle: // Option 6 in menu
+                case eGarageServicesMenuOptions.RechargeElectricBasedVehicle: // Option 6 in menu
                     Vehicle vehicleToRecharge = null;
                     string vehicleToRechargeStr = GarageUIUtils.getVehicleLicenseNumber();
                     GarageServices.tryGetVehicleByLicense(vehicleToRechargeStr, out vehicleToRecharge);
@@ -140,7 +140,7 @@ namespace Ex03.ConsoleUI
                     GarageServices.ChargeBattery(vehicleToRechargeStr, energyToadd, vehicleToRecharge);
                     break;
 
-                case eGarageSystemServices.ViewVehicleInfo: // Option 7 in menu
+                case eGarageServicesMenuOptions.ViewVehicleInfo: // Option 7 in menu
                     Vehicle vehicleToShowInfo = null;
                     string vehicleToShowInfoStr = GarageUIUtils.getVehicleLicenseNumber();
                     GarageServices.tryGetVehicleByLicense(vehicleToShowInfoStr, out vehicleToShowInfo);
@@ -158,16 +158,16 @@ namespace Ex03.ConsoleUI
             switch (vehicleType)
             {
                 case eVehicleType.Car:
-                    uniqueVehicleProperties.Add(GarageConstants.k_KeyColor, GetStringFromUser(Console.ReadLine()));
-                    uniqueVehicleProperties.Add(GarageConstants.k_KeyNumOfDoors, GetStringFromUser(Console.ReadLine()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyColor, GarageUIUtils.GetStringFromUser(Console.ReadLine()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyNumOfDoors, GarageUIUtils.GetStringFromUser(Console.ReadLine()));
                     break;
                 case eVehicleType.Motorcycle:
-                    uniqueVehicleProperties.Add(GarageConstants.k_KeyEngineVolume, GetStringFromUser(Console.ReadLine()));
-                    uniqueVehicleProperties.Add(GarageConstants.k_KeyLicenseType, GetStringFromUser(Console.ReadLine()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyEngineVolume, GarageUIUtils.GetStringFromUser(Console.ReadLine()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_KeyLicenseType, GarageUIUtils.GetStringFromUser(Console.ReadLine()));
                     break;
                 case eVehicleType.Truck:
-                    uniqueVehicleProperties.Add(GarageConstants.k_CarryigHazardousMaterial, GetStringFromUser(Console.ReadLine()));
-                    uniqueVehicleProperties.Add(GarageConstants.k_MaxLoadingWeight, GetStringFromUser(Console.ReadLine()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_CarryigHazardousMaterial, GarageUIUtils.GetStringFromUser(Console.ReadLine()));
+                    uniqueVehicleProperties.Add(GarageConstants.k_MaxLoadingWeight, GarageUIUtils.GetStringFromUser(Console.ReadLine()));
                     break;
             }
 

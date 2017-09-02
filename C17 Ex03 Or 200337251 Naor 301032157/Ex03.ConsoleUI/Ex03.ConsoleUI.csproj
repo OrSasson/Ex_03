@@ -42,11 +42,13 @@
     <Compile Include="PropertyValidator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Ex03.GarageLogic, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Ex03.GarageLogic\bin\Debug\Ex03.GarageLogic.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ex03.GarageLogic\Ex03.GarageLogic.csproj">
+      <Project>{8c41734d-aea8-4399-b360-a0ff1bacfcec}</Project>
+      <Name>Ex03.GarageLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

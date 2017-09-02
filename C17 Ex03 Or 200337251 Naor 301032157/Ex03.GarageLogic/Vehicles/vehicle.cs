@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         protected readonly int r_NumOfWheels;
         protected float m_EnergyLeftPercentage;
         private List<Wheel> m_Wheels;
-        private Engine r_FuelEngine; // why is there an Engine here? 
+        private Engine r_VehicleEngine; 
 
         protected internal abstract float getMaxAirPressure();
 
@@ -34,11 +34,11 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return r_FuelEngine;
+                return r_VehicleEngine;
             }
             set
             {
-                r_FuelEngine = value;
+                r_VehicleEngine = value;
             }
         }
 

@@ -126,7 +126,7 @@ namespace Ex03.ConsoleUI
         }
 
         //Motorcycle unique properties
-        internal static eMotorcycleLicenseType getMotorcycleLicenseType(Type i_Type)
+        internal static eMotorcylceLicenseType getMotorcycleLicenseType(Type i_Type)
         {
             string licenseType = string.Empty;
             int doorsNum;
@@ -134,7 +134,7 @@ namespace Ex03.ConsoleUI
             doorsNum = m_IntValidator.GetVehicleProperty(k_MotorcycleLicenseOptions, out doorsNum);
             licenseType = doorsNum.ToString();
 
-            return (eMotorcycleLicenseType)Enum.Parse(typeof(eMotorcycleLicenseType), licenseType);
+            return (eMotorcylceLicenseType)Enum.Parse(typeof(eMotorcylceLicenseType), licenseType);
         }
 
         internal static int getMotorcycleEngineVolume()

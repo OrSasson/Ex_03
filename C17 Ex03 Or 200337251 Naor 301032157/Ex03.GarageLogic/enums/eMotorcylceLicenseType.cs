@@ -1,6 +1,6 @@
 ﻿namespace Ex03.GarageLogic
 {
-    internal enum eMotorcylceLicenseType
+    public enum eMotorcylceLicenseType
     {
         A1,
         B1,
