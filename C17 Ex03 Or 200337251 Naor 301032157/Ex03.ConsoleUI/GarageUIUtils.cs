@@ -51,10 +51,10 @@ namespace Ex03.ConsoleUI
         internal const string k_EnterWheelManufacturerName ="Please enter the Wheel manufacturer name : ";
         internal const string k_EnterVehicleOwnerName ="Please enter the vehicle owner name : ";
         internal const string k_EnterVehicleOwnerPhoneNumber ="Please enter the vehicle owner phone number : ";
-        internal const string k_EnterMotorcycleEngineVolume ="Please enter the Motorcycle engine volume : "
+        internal const string k_EnterMotorcycleEngineVolume = "Please enter the Motorcycle engine volume : ";
         internal const string k_EnterAmountToAddFuel ="Enter amount you would like to charge";
-        internal const string k_EnterMaxiumLoadingWeight ="Please enter the truck's Maximum loading weight:"
-        internal const string k_EnterHazardousMaterialExistence ="Does the Truck contains Hazardous Materials ? (Y/N)"
+        internal const string k_EnterMaxiumLoadingWeight = "Please enter the truck's Maximum loading weight:";
+        internal const string k_EnterHazardousMaterialExistence = "Does the Truck contains Hazardous Materials ? (Y/N)";
 
 
         internal static eFuelType getFuelTypeFromUser()
