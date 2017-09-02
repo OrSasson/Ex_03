@@ -32,7 +32,7 @@ namespace Ex03.ConsoleUI
 "View vehicle full detailes (License plate)");
         }
 
-        private void GarageMenu()
+        public void GarageMenu()
         {
            
             loadGarageSystem();
@@ -240,7 +240,7 @@ namespace Ex03.ConsoleUI
                 inMenu = (userChoiseAsInt >= (int)eGarageServicesMenuOptions.AssignVehicleToRepair) && userChoiseAsInt <= ((int)eGarageServicesMenuOptions.ViewVehicleInfo);
             } while (validInput != true || inMenu != true);
 
-            return choice
+            return choice;
         }
 
         private Dictionary<string, string> GetUniquePropertiesByVehicleType(eVehicleType vehicleType)
