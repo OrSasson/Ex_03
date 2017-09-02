@@ -196,7 +196,7 @@ namespace Ex03.ConsoleUI
             string filter = Console.ReadLine();
 
             bool v_includeFilter = true;
-            eVehicleStatus vehicleStatus = eVehicleStatus.NotDetermined;
+            eVehicleStatus vehicleStatus = eVehicleStatus.All;
 
             if (filter == "y" || filter == "Y")
             {
@@ -205,7 +205,7 @@ namespace Ex03.ConsoleUI
             }
             else if (filter == "n" || filter == "N")
             {
-                vehiclesList = GarageServices.GetVehiclesListInGarage(eVehicleStatus.NotDetermined, !v_includeFilter);
+                vehiclesList = GarageServices.GetVehiclesListInGarage(eVehicleStatus.All, !v_includeFilter);
             }
             else
             {
@@ -234,7 +234,6 @@ namespace Ex03.ConsoleUI
                 string wheelManfucaturerName = GarageUIUtils.getWheelManufacturerName();
                 string ownerName = GarageUIUtils.getVehicleOwnerName();
                 string ownerPhoneNum = GarageUIUtils.getVehicleOwnerPhoneNum();
-            //    float wheelCurrentAirPressure = GarageUIUtils.getCurrentTiersAirPressure();
 
                 try
                 {

@@ -46,6 +46,17 @@ namespace Ex03.ConsoleUI
 3.Octan96.
 4.Octan98.";
 
+        internal const string k_InputLicensePlate = "Please enter the vehicle license plate number: ";
+        internal const string k_LincesCannotBeEmpty = "License Number cannot be empty!";
+        internal const string k_EnterWheelManufacturerName ="Please enter the Wheel manufacturer name : ";
+        internal const string k_EnterVehicleOwnerName ="Please enter the vehicle owner name : ";
+        internal const string k_EnterVehicleOwnerPhoneNumber ="Please enter the vehicle owner phone number : ";
+        internal const string k_EnterMotorcycleEngineVolume ="Please enter the Motorcycle engine volume : "
+        internal const string k_EnterAmountToAddFuel ="Enter amount you would like to charge";
+        internal const string k_EnterMaxiumLoadingWeight ="Please enter the truck's Maximum loading weight:"
+        internal const string k_EnterHazardousMaterialExistence ="Does the Truck contains Hazardous Materials ? (Y/N)"
+
+
         internal static eFuelType getFuelTypeFromUser()
         {
             string fuelTypeStr = string.Empty;
@@ -114,15 +125,6 @@ namespace Ex03.ConsoleUI
         internal static string getVehicleOwnerPhoneNum()
         {
             return GetStringFromUser("Please enter the vehicle owner phone number : ");
-        }
-
-        internal static float getCurrentTiersAirPressure()
-        {
-            //we need to get the max wheel air pressure here
-            Console.WriteLine("Enter the wheel current air Pressure ");
-            string currentAirPressure = Console.ReadLine();
-
-            return float.Parse(currentAirPressure);
         }
 
         internal static float getBatteryAmountToCharge(Vehicle vehicleToCharge)

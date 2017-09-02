@@ -2,7 +2,7 @@
 {
     public enum eVehicleStatus
     {
-        NotDetermined = -1,
+        All = -1,
         InRepair = 1,
         Repaired,
         Paid

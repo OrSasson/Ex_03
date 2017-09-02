@@ -29,7 +29,7 @@ namespace Ex03.GarageLogic
 
             foreach (KeyValuePair<Vehicle, CustomerData> garageEntry in s_GarageEntries)
             {
-                if (i_IncludeFiltering && garageEntry.Value.VehicleStatus == i_vehicleStatusFilter)
+                if (i_vehicleStatusFilter == eVehicleStatus.All || (i_IncludeFiltering && garageEntry.Value.VehicleStatus == i_vehicleStatusFilter)
                 {
                     vehiclesList.Add(garageEntry.Key.LicenseNumber);
                 }
