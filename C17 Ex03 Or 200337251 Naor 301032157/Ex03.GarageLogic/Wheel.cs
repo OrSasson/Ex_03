@@ -22,7 +22,6 @@ namespace Ex03.GarageLogic
             if (i_AmountOfAirToAdd < 0 || m_CurrentAirPressure + i_AmountOfAirToAdd > m_MaxWheelAirPressure)
             {
                 throw new ValueOutOfRangeExecption("You are trying to add too much air, or inputting a negative number as air pressure unit value. ", 0, m_MaxWheelAirPressure - m_CurrentAirPressure);
-
             }
 
             m_CurrentAirPressure += i_AmountOfAirToAdd;
@@ -33,9 +32,6 @@ namespace Ex03.GarageLogic
             m_CurrentAirPressure = m_MaxWheelAirPressure;
         }
 
-
-
-
         public override string ToString()
         {
             return String.Format(
@@ -43,7 +39,6 @@ namespace Ex03.GarageLogic
 Current air pressure Units: {1}.
 The max air pressure is:    {2}"
         , m_Manufacturer, m_CurrentAirPressure, m_MaxWheelAirPressure);
-
         }
     }
 }

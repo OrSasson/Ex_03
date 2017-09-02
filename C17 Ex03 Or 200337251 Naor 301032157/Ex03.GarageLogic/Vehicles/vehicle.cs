@@ -6,12 +6,17 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
+        protected readonly string m_ModelName;
+        private readonly string r_LicenseNumber;
+        protected readonly int r_NumOfWheels;
+        protected float m_EnergyLeftPercentage;
+        private List<Wheel> m_Wheels;
+        private Engine r_FuelEngine; // why is there an Engine here? 
+
         protected internal abstract float getMaxAirPressure();
+
         internal abstract void InitUniqueVehicleProperties(Dictionary<string, string> additionaPropertiesDictionary);
 
-        protected readonly string m_ModelName;
-
-        private readonly string r_LicenseNumber;
         internal string LicenseNumber
         {
             get
@@ -20,18 +25,11 @@ namespace Ex03.GarageLogic
             }
         }
 
-        protected readonly int r_NumOfWheels;
-
-        protected float m_EnergyLeftPercentage;
-
-        private List<Wheel> m_Wheels;
-        public  List<Wheel> Wheels
+        public List<Wheel> Wheels
         {
             get { return m_Wheels; }
-            
         }
 
-        private Engine r_FuelEngine; // why is there an Engine here? 
         internal Engine Engine
         {
             get
@@ -88,16 +86,14 @@ namespace Ex03.GarageLogic
         }
 
         // Overriding Operators.
-        public static bool operator == (Vehicle i_Lvehicle, Vehicle i_Rvehicle)
+        public static bool operator ==(Vehicle i_Lvehicle, Vehicle i_Rvehicle)
         {
             return i_Lvehicle.r_LicenseNumber == i_Rvehicle.r_LicenseNumber;
         }
 
-        public static bool operator != (Vehicle i_Lvehicle, Vehicle i_Rvehicle)
+        public static bool operator !=(Vehicle i_Lvehicle, Vehicle i_Rvehicle)
         {
             return !(i_Lvehicle == i_Rvehicle);
         }
-        
-      
     }
 }

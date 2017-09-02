@@ -7,16 +7,13 @@ namespace Ex03.GarageLogic
     internal abstract class Motorcycle : Vehicle
     {
         private const float k_MaxAirPressure = 28f;
-        private const int k_numOfWheels = 2;
+        private const int k_NumOfWheels = 2;
 
         eMotorcylceLicenseType m_LicenseType;
         int m_EngineVolume; // m_EngineCapacity??
 
         internal Motorcycle(string i_ModelName, string i_LicenceNumber) 
-            : base(i_ModelName, i_LicenceNumber, k_numOfWheels)
-        {
-           
-        }
+            : base(i_ModelName, i_LicenceNumber, k_NumOfWheels){ }
 
         private void initUniqueMotorcycleProperties(Dictionary<string, string> additionaPropertiesDictionary)
         {
@@ -28,10 +25,12 @@ namespace Ex03.GarageLogic
             additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyEngineVolume, out MotoryclePropertyValue);
             m_EngineVolume = int.Parse(MotoryclePropertyValue);
         }
+
         internal override void InitUniqueVehicleProperties(Dictionary<string, string> additionaPropertiesDictionary)
         {
             initUniqueMotorcycleProperties(additionaPropertiesDictionary);
         }
+
         protected internal override float getMaxAirPressure()
         {
             return k_MaxAirPressure;

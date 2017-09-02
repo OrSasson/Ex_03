@@ -45,20 +45,20 @@ namespace Ex03.GarageLogic
             return k_MaxAirPressure;
         }
 
-        private void InitUniqueTruckProperties(Dictionary<string, string> additionaPropertiesDictionary)
+        private void InitUniqueTruckProperties(Dictionary<string, string> i_AdditionaPropertiesDictionary)
         {
-           string truckPropertyValue;
+            string truckPropertyValue;
 
-            additionaPropertiesDictionary.TryGetValue(GarageConstants.k_MaxLoadingWeight, out truckPropertyValue);
+            i_AdditionaPropertiesDictionary.TryGetValue(GarageConstants.k_MaxLoadingWeight, out truckPropertyValue);
             m_MaxLoadingWeight = float.Parse(truckPropertyValue);
 
-            additionaPropertiesDictionary.TryGetValue(GarageConstants.k_CarryigHazardousMaterial, out truckPropertyValue);
+            i_AdditionaPropertiesDictionary.TryGetValue(GarageConstants.k_CarryigHazardousMaterial, out truckPropertyValue);
             m_CarryigHazardousMaterial = bool.Parse(truckPropertyValue);
         }
 
-        internal override void InitUniqueVehicleProperties(Dictionary<string, string> additionaPropertiesDictionary)
+        internal override void InitUniqueVehicleProperties(Dictionary<string, string> i_AdditionaPropertiesDictionary)
         {
-            InitUniqueTruckProperties(additionaPropertiesDictionary);
+            InitUniqueTruckProperties(i_AdditionaPropertiesDictionary);
         }
     }
 }

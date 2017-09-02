@@ -13,9 +13,5 @@ namespace Ex03.GarageLogic
         {
             Engine = new ElectricEngine(r_MaxBatteryCapacity); 
         }
-
-     
-
-
     }
 }

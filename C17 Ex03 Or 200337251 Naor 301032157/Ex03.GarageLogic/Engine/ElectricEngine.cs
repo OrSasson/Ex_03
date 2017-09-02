@@ -17,7 +17,7 @@ namespace Ex03.GarageLogic
             string enginePropertiesStr = string.Format(
 @"
 Electric Engine Statistics:
------------------------
+---------------------------
 Current Fuel amount:    {0}
 Max Battery Amount:     {1}
 Battery Left:           {2}%",

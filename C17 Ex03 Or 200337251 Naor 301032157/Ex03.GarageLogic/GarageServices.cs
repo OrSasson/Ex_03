@@ -13,8 +13,6 @@ namespace Ex03.GarageLogic
         // Still need to make sub methods.
         public static void AddNewGarageEntry(eVehicleType i_VehicleType, string i_ModelName, string i_LicenceNumber, string i_WheelManfucaturerName, string i_OwnerName, string i_OwnerPhoneNum, float i_WheelCurrentAirPressure, Dictionary<string, string> uniqueVehicleProperties)
         {
-            
-
             Vehicle vehicleToAdd = VehicleFactory.CreateVehicle((int)i_VehicleType, i_ModelName, i_LicenceNumber);
             vehicleToAdd.SetWheels(i_WheelManfucaturerName, i_WheelCurrentAirPressure);
             vehicleToAdd.InitUniqueVehicleProperties(uniqueVehicleProperties);
@@ -117,6 +115,7 @@ namespace Ex03.GarageLogic
                     break;
                 }
             }
+
             return exists;
         }
 
@@ -135,7 +134,4 @@ namespace Ex03.GarageLogic
         //    return exists;
         //}
     }
-
 }
-
-

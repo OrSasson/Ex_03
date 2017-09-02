@@ -6,7 +6,7 @@ namespace Ex03.ConsoleUI
 {
     internal enum eGarageSystemServices
     {
-        NoSelection,
+        NoSelection = 0,
         AssignVehicleToRepair,
         ViewVehiclesPlateNumbersByStatus,
         ChangeVehicleStatus,

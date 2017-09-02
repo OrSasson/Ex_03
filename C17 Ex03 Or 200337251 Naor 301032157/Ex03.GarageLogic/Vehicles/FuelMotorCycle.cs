@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         internal FuelMotorcycle(string i_ModelName, string i_LicenceNumber)
             : base(i_ModelName, i_LicenceNumber)
         {
-            Engine = new FuelEngine(FuelEngine.eFuelType.Octan98, k_MaxFuelAmount); // Please Correct Values!!!
+            Engine = new FuelEngine(FuelEngine.eFuelType.Octan95, k_MaxFuelAmount);
         }
     }
 }

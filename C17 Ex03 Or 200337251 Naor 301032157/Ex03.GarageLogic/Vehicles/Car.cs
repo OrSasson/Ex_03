@@ -17,7 +17,7 @@ namespace Ex03.GarageLogic
             m_CarColor = eCarColor.NotDetermined;
             m_NumOfDoorsInCar = eNumDoorsInCar.NotDetermined;
         }
-       
+
         // $ OrNeed to make this generic, so we won't duplicate code. maybe pass key as param.
         private void initUniqueCarProperties(Dictionary<string, string> additionaPropertiesDictionary)
         {
@@ -29,14 +29,15 @@ namespace Ex03.GarageLogic
             additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyNumOfDoors, out carPropertyValue);
             m_NumOfDoorsInCar = (eNumDoorsInCar)Enum.Parse(typeof(eNumDoorsInCar), carPropertyValue);
         }
+
         internal override void InitUniqueVehicleProperties(Dictionary<string, string> additionaPropertiesDictionary)
         {
             initUniqueCarProperties(additionaPropertiesDictionary);
         }
-       protected internal override float getMaxAirPressure()
+
+        protected internal override float getMaxAirPressure()
         {
             return k_MaxAirPressure;
         }
-
     }
 }
