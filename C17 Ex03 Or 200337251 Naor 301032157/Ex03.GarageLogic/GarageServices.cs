@@ -113,7 +113,7 @@ namespace Ex03.GarageLogic
             {
                 if (i_licenseNumer == vehicle.LicenseNumber)
                 {
-                    Console.WriteLine("The Vehicle "+ i_licenseNumer + "already Exists!");
+                 //   Console.WriteLine("The Vehicle "+ i_licenseNumer + "already Exists!");
                     exists = true;
                     o_Vehicle = vehicle;
                     break;

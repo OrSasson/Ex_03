@@ -58,15 +58,13 @@ namespace Ex03.GarageLogic
 
         public override bool Equals(object obj)
         {
-            bool equals = false;
-            Vehicle toCompareTo = obj as Vehicle;
-
-            if(toCompareTo != null)
+            Vehicle toCompareTo = null;
+            if(obj is Vehicle)
             {
-                equals = r_LicenseNumber == toCompareTo.r_LicenseNumber;
+                toCompareTo = obj as Vehicle; 
             }
 
-            return base.Equals(obj);
+            return this.r_LicenseNumber == toCompareTo.r_LicenseNumber;
         }
 
         internal void SetVehicleWheels(string i_ManufacturerName)
@@ -93,7 +91,7 @@ namespace Ex03.GarageLogic
 
         public static bool operator !=(Vehicle i_Lvehicle, Vehicle i_Rvehicle)
         {
-            return !(i_Lvehicle == i_Rvehicle);
+            return i_Lvehicle.r_LicenseNumber != i_Rvehicle.r_LicenseNumber;
         }
     }
 }

@@ -104,12 +104,15 @@ namespace Ex03.ConsoleUI
         private void showGarageEntryData()
         {
             Vehicle vehicleToShowInfo = null;
-
+            string garageEntryData = string.Empty;
             string vehicleToShowInfoStr = GarageUIUtils.getVehicleLicenseNumber();
 
             if (GarageServices.tryGetVehicleByLicense(vehicleToShowInfoStr, out vehicleToShowInfo))
             {
-                GarageServices.showGarageEntryData(vehicleToShowInfo);
+                Console.WriteLine("Printing Garage Entry Data:");
+                garageEntryData =GarageServices.showGarageEntryData(vehicleToShowInfo);
+                Console.Clear();
+                Console.WriteLine(garageEntryData);
             }
             else
             {
@@ -225,6 +228,7 @@ namespace Ex03.ConsoleUI
             string licenseNumberFromuser = GarageUIUtils.getVehicleLicenseNumber();
             if (GarageServices.tryGetVehicleByLicense(licenseNumberFromuser, out vehicleToAdd))
             {
+                Console.WriteLine("The Vehicle "+ licenseNumberFromuser + "already Exists!");
                 GarageServices.ChangeVehicleStatus(vehicleToAdd, eVehicleStatus.Repaired);
             }
             else
