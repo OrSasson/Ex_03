@@ -47,16 +47,16 @@ namespace Ex03.ConsoleUI
 
                         case eGarageServicesMenuOptions.ViewVehiclesPlateNumbersByStatus: // Option 2 in menu
                             displayVehicleList();
-                            Console.WriteLine("To retrun to the menu press any key.");
+                            Console.WriteLine("To return to the menu press any key.");
                             Console.ReadKey();
                             break;
 
                         case eGarageServicesMenuOptions.ChangeVehicleStatus: // Option 3 in menu
-                            ChangeVehicleStatus();
+                            changeVehicleStatus();
                             break;
 
                         case eGarageServicesMenuOptions.InflateVehicleWheelsToMax: // Option 4 in menu
-                            InflateWheelsToMax();
+                            inflateWheelsToMax();
                             break;
 
                         case eGarageServicesMenuOptions.RefuelFuelBasedVehicle: // Option 5 in menu
@@ -69,7 +69,7 @@ namespace Ex03.ConsoleUI
 
                         case eGarageServicesMenuOptions.ViewVehicleInfo: // Option 7 in menu
                             showGarageEntryData();
-                            Console.WriteLine("To retrun to the menu press any key.");
+                            Console.WriteLine("To return to the menu press any key.");
                             Console.ReadKey();
                             break;
                         case eGarageServicesMenuOptions.ExitGarageServices:
@@ -102,7 +102,7 @@ namespace Ex03.ConsoleUI
                 garageEntryData = GarageServices.showGarageEntryData(vehicleToShowInfo);
                 Console.Clear();
                 Console.WriteLine(garageEntryData);
-                Console.WriteLine("To retrun to the menu press any key.");
+                Console.WriteLine("To return to the menu press any key.");
                 Console.ReadKey();
             }
             else
@@ -145,7 +145,7 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private void InflateWheelsToMax()
+        private void inflateWheelsToMax()
         {
             Vehicle vehicleToInflateWheels = null;
             string vehicleToInflateLicenseNumStr = GarageUIUtils.getVehicleLicenseNumber();
@@ -154,7 +154,7 @@ namespace Ex03.ConsoleUI
             {
                 GarageServices.InflateVehicleWheelsToMax(vehicleToInflateWheels);
                 Console.WriteLine("The wheels of the vehicle with the license plate {0} was inflate to max pressure.", vehicleToInflateLicenseNumStr);
-                Console.WriteLine("To retrun to the menu press any key.");
+                Console.WriteLine("To return to the menu press any key.");
                 Console.ReadKey();
             }
             else
@@ -166,11 +166,11 @@ namespace Ex03.ConsoleUI
         private void errorFindingVehicle()
         {
             Console.WriteLine("Could not find Vehicle!!!");
-            Console.WriteLine("To retrun to the menu press any key.");
+            Console.WriteLine("To return to the menu press any key.");
             Console.ReadKey();
         }
 
-        private void ChangeVehicleStatus()
+        private void changeVehicleStatus()
         {
             Vehicle vehicleToChangeStatus = null;
             eVehicleStatus newVehicleStatus = GarageUIUtils.getVehicleStatus();
@@ -219,8 +219,8 @@ namespace Ex03.ConsoleUI
         private void addVehicleToGarage()
         {
             Vehicle vehicleToAdd = null;
-
             string licenseNumberFromuser = GarageUIUtils.getVehicleLicenseNumber();
+
             if (GarageServices.tryGetVehicleByLicense(licenseNumberFromuser, out vehicleToAdd))
             {
                 Console.WriteLine("The Vehicle " + licenseNumberFromuser + " already Exists!");
@@ -246,7 +246,7 @@ namespace Ex03.ConsoleUI
                 }
             }
 
-            Console.WriteLine("To retrun to the menu press any key.");
+            Console.WriteLine("To return to the menu press any key.");
             Console.ReadKey();
         }
 
