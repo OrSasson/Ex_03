@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -41,7 +40,7 @@ namespace Ex03.GarageLogic
 
             s_GarageEntries.TryGetValue(i_VehicleToChange, out customerData);
             customerData.VehicleStatus = i_NewVehicleStatus;
-            Console.WriteLine("The status for the vehicle with license number {0} was changed succesfully!",i_VehicleToChange.LicenseNumber);
+            Console.WriteLine("The status for the vehicle with license number {0} was changed succesfully!", i_VehicleToChange.LicenseNumber);
         }
 
         public static void InflateVehicleWheelsToMax(Vehicle vehicle)

@@ -34,7 +34,9 @@
   <ItemGroup>
     <Compile Include="FloatValidator.cs" />
     <Compile Include="GarageUI.cs" />
-    <Compile Include="eGarageServicesMenuOptions.cs" />
+    <Compile Include="eGarageServicesMenuOptions.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="GarageUIUtils.cs" />
     <Compile Include="IntValidator.cs" />
     <Compile Include="Program.cs" />

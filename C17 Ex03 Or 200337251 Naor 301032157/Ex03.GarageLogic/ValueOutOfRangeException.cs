@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Ex03.GarageLogic
 {
     public class ValueOutOfRangeExecption : Exception
     {
-        float m_MinValue;
-        float m_MaxValue;
+        internal float m_MinValue;
+        internal float m_MaxValue;
 
         public ValueOutOfRangeExecption(string i_Message, float i_MinValue, float i_MaxValue) : base(i_Message)
         {

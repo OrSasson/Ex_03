@@ -1,11 +1,10 @@
-﻿using Ex03.GarageLogic;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using Ex03.GarageLogic;
 
 namespace Ex03.ConsoleUI
 {
-    class GarageUI
+    internal class GarageUI
     {
         internal const int k_GarageServicesMenuOptionsNumber = 9;
         internal const string k_DisplayUserdisplayUserOptions = @"Please chose the required service:
@@ -41,33 +40,33 @@ namespace Ex03.ConsoleUI
 
                     switch (GarageSystemService)
                     {
-                        case eGarageServicesMenuOptions.AssignVehicleToRepair: // Option 1 in menu
+                        case eGarageServicesMenuOptions.AssignVehicleToRepair: 
                             addVehicleToGarage();
                             break;
 
-                        case eGarageServicesMenuOptions.ViewVehiclesPlateNumbersByStatus: // Option 2 in menu
+                        case eGarageServicesMenuOptions.ViewVehiclesPlateNumbersByStatus: 
                             displayVehicleList();
                             Console.WriteLine("To return to the menu press any key.");
                             Console.ReadKey();
                             break;
 
-                        case eGarageServicesMenuOptions.ChangeVehicleStatus: // Option 3 in menu
+                        case eGarageServicesMenuOptions.ChangeVehicleStatus:
                             changeVehicleStatus();
                             break;
 
-                        case eGarageServicesMenuOptions.InflateVehicleWheelsToMax: // Option 4 in menu
+                        case eGarageServicesMenuOptions.InflateVehicleWheelsToMax: 
                             inflateWheelsToMax();
                             break;
 
-                        case eGarageServicesMenuOptions.RefuelFuelBasedVehicle: // Option 5 in menu
+                        case eGarageServicesMenuOptions.RefuelFuelBasedVehicle: 
                             refuelCar();
                             break;
 
-                        case eGarageServicesMenuOptions.RechargeElectricBasedVehicle: // Option 6 in menu
+                        case eGarageServicesMenuOptions.RechargeElectricBasedVehicle: 
                             rechargeElectricVehicle();
                             break;
 
-                        case eGarageServicesMenuOptions.ViewVehicleInfo: // Option 7 in menu
+                        case eGarageServicesMenuOptions.ViewVehicleInfo: 
                             showGarageEntryData();
                             Console.WriteLine("To return to the menu press any key.");
                             Console.ReadKey();
@@ -77,7 +76,7 @@ namespace Ex03.ConsoleUI
                             toContinue = false;
                             break;
                         default:
-                            throw new ArgumentException("Invalid Menu Option!");                                
+                            throw new ArgumentException("Invalid Menu Option!");
                     }
                 }
                 catch (Exception ex)
@@ -111,21 +110,6 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private void rechargeElectricVehicle()
-        {
-            Vehicle vehicleToRecharge = null;
-            string vehicleToRechargeStr = GarageUIUtils.getVehicleLicenseNumber();
-            if(GarageServices.tryGetVehicleByLicense(vehicleToRechargeStr, out vehicleToRecharge))
-            {
-                float energyToadd = GarageUIUtils.getBatteryAmountToCharge(vehicleToRecharge);
-                GarageServices.ChargeBattery(vehicleToRechargeStr, energyToadd, vehicleToRecharge);
-            }
-            else
-            {
-                errorFindingVehicle();
-            }
-        }
-
         private void refuelCar()
         {
             Vehicle vehicleToFuel = null;
@@ -138,6 +122,28 @@ namespace Ex03.ConsoleUI
             if (GarageServices.tryGetVehicleByLicense(vehicleToFuelStr, out vehicleToFuel))
             {
                 GarageServices.AddFuel(vehicleToFuelStr, fuelToadd, (int)fuelType, vehicleToFuel);
+                Console.WriteLine("Refuel has succeed, Added {0} liters to the vehicle with the license plate {1}.", fuelToadd, vehicleToFuelStr);
+                Console.WriteLine("To return to the menu press any key.");
+                Console.ReadKey();
+            }
+            else
+            {
+                errorFindingVehicle();
+            }
+        }
+
+        private void rechargeElectricVehicle()
+        {
+            Vehicle vehicleToRecharge = null;
+            string vehicleToRechargeStr = GarageUIUtils.getVehicleLicenseNumber();
+
+            if (GarageServices.tryGetVehicleByLicense(vehicleToRechargeStr, out vehicleToRecharge))
+            {
+                float energyToadd = GarageUIUtils.getBatteryAmountToCharge(vehicleToRecharge);
+                GarageServices.ChargeBattery(vehicleToRechargeStr, energyToadd, vehicleToRecharge);
+                Console.WriteLine("Recharge has succeed, charged {0} minutes the battery of the vehicle with the license plate {1}.", energyToadd, vehicleToRechargeStr);
+                Console.WriteLine("To return to the menu press any key.");
+                Console.ReadKey();
             }
             else
             {
@@ -228,7 +234,7 @@ namespace Ex03.ConsoleUI
             }
             else
             {
-                eVehicleType vehicleType = GarageUIUtils.GetVehicleType();
+                eVehicleType vehicleType = GarageUIUtils.getVehicleType();
                 string modelName = GarageUIUtils.getVehicleModelName();
                 string wheelManfucaturerName = GarageUIUtils.getWheelManufacturerName();
                 string ownerName = GarageUIUtils.getVehicleOwnerName();
@@ -237,7 +243,7 @@ namespace Ex03.ConsoleUI
                 try
                 {
                     Dictionary<string, string> uniqueVehicleProperties = GetUniquePropertiesByVehicleType(vehicleType);
-                    GarageServices.AddNewGarageEntry(vehicleType, modelName, licenseNumberFromuser, ownerName, ownerPhoneNum, wheelManfucaturerName, uniqueVehicleProperties);
+                    GarageServices.AddNewGarageEntry(vehicleType, modelName, licenseNumberFromuser, wheelManfucaturerName, ownerName, ownerPhoneNum, uniqueVehicleProperties);
                     Console.WriteLine("Vehicle was assigned to repair.");
                 }
                 catch (Exception ex)
@@ -261,7 +267,7 @@ namespace Ex03.ConsoleUI
             {
                 choice = Console.ReadLine();
                 validInput = int.TryParse(choice, out userChoiseAsInt);
-                inMenu = ((userChoiseAsInt >= 0) && (userChoiseAsInt <= k_GarageServicesMenuOptionsNumber));
+                inMenu = userChoiseAsInt >= 0 && userChoiseAsInt <= k_GarageServicesMenuOptionsNumber;
 
                 if (!inMenu)
                 {

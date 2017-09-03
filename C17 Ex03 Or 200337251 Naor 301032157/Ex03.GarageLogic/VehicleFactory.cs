@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -40,14 +38,5 @@ namespace Ex03.GarageLogic
 
             return newVehicle;
         }
-
-    //    internal enum eVehicleType : byte
-    //    {
-    //        FuelCar = 1,
-    //        ElectricCar,
-    //        FuelMotorcycle,
-    //        ElectricMotorcycle,
-    //        FuelTruck
-    //    }
     }
 }

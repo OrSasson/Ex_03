@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Ex03.ConsoleUI
 {
     public abstract class PropertyValidator<T>
     {
-        public virtual T GetPropertyValueFromUser(string i_UserOptionsSet, out T o_UserChoice)
+        public T GetPropertyValueFromUser(string i_UserOptionsSet, out T o_UserChoice)
         {
             string userChoiceStr = string.Empty;
             bool tryParseSucceed = true;
