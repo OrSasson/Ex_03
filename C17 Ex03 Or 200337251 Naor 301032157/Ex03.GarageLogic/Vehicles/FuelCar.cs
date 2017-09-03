@@ -10,7 +10,6 @@ namespace Ex03.GarageLogic
         private const float k_MaxFuelAmount = 50f;
         private const eFuelType k_fuelType =  eFuelType.Octan98;
 
-
         internal FuelCar(string i_ModelName, string i_LicenceNumber)
             : base( i_ModelName, i_LicenceNumber)
         {

@@ -6,16 +6,42 @@ namespace Ex03.GarageLogic
 {
     internal abstract class Car : Vehicle
     {
-        eCarColor m_CarColor;
-        eNumDoorsInCar m_NumOfDoorsInCar;
+        private eCarColor m_CarColor;
+        private eNumDoorsInCar m_NumOfDoorsInCar;
         private const int k_numOfWheels = 4;
         private const int k_MaxAirPressure = 32;
 
-        internal Car(string i_ModelName, string i_LicenceNumber)
+        public eCarColor CarColor
+        {
+            get
+            {
+                return m_CarColor;
+            }
+
+            private set
+            {
+                m_CarColor = value;
+            }
+        }
+
+        public eNumDoorsInCar NumOfDoorsInCar
+        {
+            get
+            {
+                return m_NumOfDoorsInCar;
+            }
+
+            private set
+            {
+                m_NumOfDoorsInCar = value;
+            }
+        }
+
+        public Car(string i_ModelName, string i_LicenceNumber)
             : base(i_ModelName, i_LicenceNumber, k_numOfWheels)
         {
-            m_CarColor = eCarColor.NotDetermined;
-            m_NumOfDoorsInCar = eNumDoorsInCar.NotDetermined;
+            CarColor = eCarColor.NotDetermined;
+            NumOfDoorsInCar = eNumDoorsInCar.NotDetermined;
         }
 
         private void initUniqueCarProperties(Dictionary<string, string> additionaPropertiesDictionary)
@@ -24,10 +50,10 @@ namespace Ex03.GarageLogic
             bool wasValueRetrieved = true;
 
             wasValueRetrieved = additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyColor, out carPropertyValue);
-            m_CarColor = (eCarColor)Enum.Parse(typeof(eCarColor), carPropertyValue);
+            CarColor = (eCarColor)Enum.Parse(typeof(eCarColor), carPropertyValue);
 
             wasValueRetrieved = wasValueRetrieved && additionaPropertiesDictionary.TryGetValue(GarageConstants.k_KeyNumOfDoors, out carPropertyValue);
-            m_NumOfDoorsInCar = (eNumDoorsInCar)Enum.Parse(typeof(eNumDoorsInCar), carPropertyValue);
+            NumOfDoorsInCar = (eNumDoorsInCar)Enum.Parse(typeof(eNumDoorsInCar), carPropertyValue);
 
             if (wasValueRetrieved != true)
             {

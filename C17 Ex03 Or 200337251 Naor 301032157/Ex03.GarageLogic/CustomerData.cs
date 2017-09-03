@@ -21,7 +21,6 @@
             }
             set
             {
-                // $Or - Throw exception not the right enum...
                 m_VehicleStatus = value;
             }
         }
@@ -33,8 +32,6 @@
             }
             set
             {
-                // using int.parse here to get 3 exception types in the price of 1 - overflow, null, format.
-                //Catching it is the UI responsibility. 
                 int.Parse(value); 
                 m_CustomerPhoneNumber = value;
             }

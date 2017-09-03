@@ -50,7 +50,6 @@ namespace Ex03.GarageLogic
             m_Wheels = new List<Wheel>();
         }
 
-        // Overrding Object's methods.
         public override int GetHashCode()
         {
             return r_LicenseNumber.GetHashCode();
@@ -83,7 +82,6 @@ namespace Ex03.GarageLogic
             }
         }
 
-        // Overriding Operators.
         public static bool operator ==(Vehicle i_Lvehicle, Vehicle i_Rvehicle)
         {
             return i_Lvehicle.r_LicenseNumber == i_Rvehicle.r_LicenseNumber;

@@ -73,7 +73,7 @@ namespace Ex03.ConsoleUI
             vehicleStatusStr = GetVehicleProperty(k_VehicleStatusOptions, k_VehicleStatusOptionsNumber);
 
             return (eVehicleStatus)Enum.Parse(typeof(eVehicleStatus), vehicleStatusStr);
-        }
+        }   
 
         internal static eVehicleType GetVehicleType()
         {
@@ -90,7 +90,6 @@ namespace Ex03.ConsoleUI
 
             Console.WriteLine("{0}", i_RequiredInfo);
             userStr = Console.ReadLine();
-
 
             return userStr;
         }
@@ -129,21 +128,17 @@ namespace Ex03.ConsoleUI
 
         internal static float getBatteryAmountToCharge(Vehicle i_vehicleToCharge)
         {
-            //we need to get the max wheel air pressure here
             Console.WriteLine(k_EnterAmountToAddFuel);
             string amountToChargeStr = Console.ReadLine();
 
             return float.Parse(amountToChargeStr);
         }
 
-        //Car uninque properties
         internal static string getNumberOfDoorsInCar()
         {
             string doorsNumStr = string.Empty;
-            int doorsNum;
 
-            doorsNum = m_IntValidator.GetPropertyValueFromUser(k_CarDoorsOptions, out doorsNum);
-            doorsNumStr = doorsNum.ToString();
+            doorsNumStr = GetVehicleProperty(k_CarDoorsOptions, k_CarDoorsOptionsNumber);
 
             return ((eNumDoorsInCar)Enum.Parse(typeof(eNumDoorsInCar), doorsNumStr)).ToString();
         }
@@ -157,7 +152,6 @@ namespace Ex03.ConsoleUI
             return ((eCarColor)Enum.Parse(typeof(eCarColor), carColorStr)).ToString();
         }
 
-        //Motorcycle unique properties
         internal static string getMotorcycleLicenseType()
         {
             string licenseTypeStr = string.Empty;
@@ -178,7 +172,6 @@ namespace Ex03.ConsoleUI
             return engineVolumeStr;
         }
 
-        //Truck uninque properties
         internal static string DoesContainsHazardousMaterials()
         {
             string doesContainsStr = string.Empty;
@@ -214,7 +207,6 @@ namespace Ex03.ConsoleUI
             return maxWeightStr;
         }
 
-        //check if this method is unnecessary
         internal static string GetVehicleProperty(string i_UserOptionsSet, int i_UserOptionsNumber)
         {
             int userPropertyValue;
@@ -225,7 +217,8 @@ namespace Ex03.ConsoleUI
                 m_IntValidator.GetPropertyValueFromUser(i_UserOptionsSet, out userPropertyValue);
                 userPropertyStr = userPropertyValue.ToString();
 
-            } while (userPropertyValue < 1 || userPropertyValue > i_UserOptionsNumber);
+            }
+            while (userPropertyValue < 1 || userPropertyValue > i_UserOptionsNumber);
 
             return userPropertyStr;
         }

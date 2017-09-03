@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
     {
         private const float k_MaxBatteryCapacity = 2.8f;
 
-        internal ElectricCar(string i_ModelName, string i_LicenceNumber)
+        public ElectricCar(string i_ModelName, string i_LicenceNumber)
             : base( i_ModelName, i_LicenceNumber)
         {
            Engine = new ElectricEngine(k_MaxBatteryCapacity); 

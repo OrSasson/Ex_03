@@ -6,7 +6,6 @@ namespace Ex03.GarageLogic
 {
     internal static class VehicleFactory
     {
-        // Getting all the read only fields the belong to vehicle.
         public static Vehicle CreateVehicle(int i_VehicleType, string i_ModelName, string i_LicenceNumber)
         {
             Vehicle newVehicle = null;
@@ -42,13 +41,13 @@ namespace Ex03.GarageLogic
             return newVehicle;
         }
 
-        internal enum eVehicleType : byte
-        {
-            FuelCar = 1,
-            ElectricCar,
-            FuelMotorcycle,
-            ElectricMotorcycle,
-            FuelTruck
-        }
+    //    internal enum eVehicleType : byte
+    //    {
+    //        FuelCar = 1,
+    //        ElectricCar,
+    //        FuelMotorcycle,
+    //        ElectricMotorcycle,
+    //        FuelTruck
+    //    }
     }
 }
