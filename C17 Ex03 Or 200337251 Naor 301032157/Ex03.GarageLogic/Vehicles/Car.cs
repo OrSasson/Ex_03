@@ -71,6 +71,7 @@ namespace Ex03.GarageLogic
             return k_MaxAirPressure;
         }
 
+        //Overriding Object's Tostring() method.
         public override string ToString()
         {
             return string.Format(

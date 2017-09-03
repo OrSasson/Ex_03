@@ -67,6 +67,8 @@ namespace Ex03.GarageLogic
         {
             InitUniqueTruckProperties(i_AdditionaPropertiesDictionary);
         }
+
+        // Overriding object's ToString() method.
         public override string ToString()
         {
             return string.Format(

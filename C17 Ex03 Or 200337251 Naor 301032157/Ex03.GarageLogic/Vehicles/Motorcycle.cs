@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
         private const int k_NumOfWheels = 2;
 
         eMotorcylceLicenseType m_LicenseType;
-        int m_EngineVolume; // m_EngineCapacity??
+        int m_EngineVolume; 
 
         internal Motorcycle(string i_ModelName, string i_LicenceNumber)
             : base(i_ModelName, i_LicenceNumber, k_NumOfWheels) { }
@@ -41,6 +41,8 @@ namespace Ex03.GarageLogic
         {
             return k_MaxAirPressure;
         }
+
+        // Overrding Object's method.
         public override string ToString()
         {
             return string.Format(
