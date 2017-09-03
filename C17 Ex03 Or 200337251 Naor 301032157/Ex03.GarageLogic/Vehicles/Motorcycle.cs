@@ -12,8 +12,8 @@ namespace Ex03.GarageLogic
         eMotorcylceLicenseType m_LicenseType;
         int m_EngineVolume; // m_EngineCapacity??
 
-        internal Motorcycle(string i_ModelName, string i_LicenceNumber) 
-            : base(i_ModelName, i_LicenceNumber, k_NumOfWheels){ }
+        internal Motorcycle(string i_ModelName, string i_LicenceNumber)
+            : base(i_ModelName, i_LicenceNumber, k_NumOfWheels) { }
 
         private void initUniqueMotorcycleProperties(Dictionary<string, string> additionaPropertiesDictionary)
         {
@@ -40,6 +40,30 @@ namespace Ex03.GarageLogic
         protected internal override float getMaxAirPressure()
         {
             return k_MaxAirPressure;
+        }
+        public override string ToString()
+        {
+            return string.Format(
+@"
+Motorcycle
+----------
+Model:             {0}
+License number:    {1}
+{2}
+Number of wheels:  {3}
+{4}
+License Type:      {5}
+Engine Volume:     {6}
+
+",
+ ModelName,
+ LicenseNumber,
+ Wheel.ToString(),
+ k_NumOfWheels,
+ Engine.ToString(),
+ m_LicenseType,
+ m_EngineVolume);
+
         }
     }
 }

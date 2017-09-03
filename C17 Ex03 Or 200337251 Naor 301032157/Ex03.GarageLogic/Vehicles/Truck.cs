@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
 {
     internal abstract class Truck : Vehicle
     {
-        const int k_numOfWheels = 12;
+        const int k_NumOfWheels = 12;
         const int k_MaxAirPressure = 34;
         private bool m_CarryigHazardousMaterial;
         float m_MaxLoadingWeight;
@@ -36,7 +36,7 @@ namespace Ex03.GarageLogic
         {
             get
             {
-                return k_numOfWheels;
+                return k_NumOfWheels;
             }
         }
 
@@ -66,6 +66,29 @@ namespace Ex03.GarageLogic
         internal override void InitUniqueVehicleProperties(Dictionary<string, string> i_AdditionaPropertiesDictionary)
         {
             InitUniqueTruckProperties(i_AdditionaPropertiesDictionary);
+        }
+        public override string ToString()
+        {
+            return string.Format(
+@"
+Truck
+-----
+Model:                   {0}
+License number:          {1}
+{2}
+Number of wheels:        {3}
+{4}
+Maximum carrying weight: {5}
+Has dangerous material:  {6}
+
+",
+ ModelName,
+ LicenseNumber,
+ Wheel.ToString(),
+ k_NumOfWheels,
+ Engine.ToString(),
+ m_MaxLoadingWeight,
+ m_CarryigHazardousMaterial);
         }
     }
 }

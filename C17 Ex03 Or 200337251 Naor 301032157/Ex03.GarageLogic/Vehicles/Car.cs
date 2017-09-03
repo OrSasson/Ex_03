@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
     {
         private eCarColor m_CarColor;
         private eNumDoorsInCar m_NumOfDoorsInCar;
-        private const int k_numOfWheels = 4;
+        private const int k_NumOfWheels = 4;
         private const int k_MaxAirPressure = 32;
 
         public eCarColor CarColor
@@ -38,7 +38,7 @@ namespace Ex03.GarageLogic
         }
 
         public Car(string i_ModelName, string i_LicenceNumber)
-            : base(i_ModelName, i_LicenceNumber, k_numOfWheels)
+            : base(i_ModelName, i_LicenceNumber, k_NumOfWheels)
         {
             CarColor = eCarColor.NotDetermined;
             NumOfDoorsInCar = eNumDoorsInCar.NotDetermined;
@@ -70,5 +70,32 @@ namespace Ex03.GarageLogic
         {
             return k_MaxAirPressure;
         }
+
+        public override string ToString()
+        {
+            return string.Format(
+@"
+Car
+---
+Model:                   {0}
+License number:          {1}
+{2}
+Number of wheels:        {3}
+{4}
+Color: {5}
+Number of Doors:  {6}
+
+",
+ ModelName,
+ LicenseNumber,
+ Engine.ToString(),
+ k_NumOfWheels,
+ Wheel.ToString(),
+ m_CarColor,
+ m_NumOfDoorsInCar);
+        }
+
+
+
     }
 }

@@ -40,9 +40,10 @@
         public override string ToString()
         {
             string customerToStr = string.Format(
-                @"Customer name: {0}
+@"
+Customer name:         {0}
 Customer phone number: {1}
-Vehicle status: {2}"
+Vehicle status:        {2}"
 , m_CustomerName, m_CustomerPhoneNumber , m_VehicleStatus);
 
             return customerToStr;

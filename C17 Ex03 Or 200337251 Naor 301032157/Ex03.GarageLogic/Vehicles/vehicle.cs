@@ -25,9 +25,25 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public List<Wheel> Wheels
+        internal string ModelName
         {
+            get
+            {
+                return r_ModelName;
+            }
+        }
+
+        internal List<Wheel> Wheels
+        { // The whole wheels collection.
             get { return m_Wheels; }
+        }
+
+        protected internal Wheel Wheel
+        { // a representetive from the wheels collection.
+            get
+            {
+                return m_Wheels[0];
+            }
         }
 
         internal Engine Engine
